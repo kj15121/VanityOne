@@ -1,0 +1,23 @@
+HTML
+<tagName class id></>
+
+CSS - layout
+selector {
+    display
+    position
+    top
+    left
+    margin
+    height
+    width
+    overflow
+}
+
+CSS - styling
+selector {
+
+}
+
+center space = 13%*18%
+limit_x = 42 to 56
+limit_y = 41 to 59
