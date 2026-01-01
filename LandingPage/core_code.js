@@ -58,6 +58,8 @@ window.addEventListener(
     function(e){
         if (e.touches.length !== 1) return;
 
+        e.preventDefault();
+
         touchState = true;
         initX = e.touches[0].clientX;
         initY = e.touches[0].clientY;

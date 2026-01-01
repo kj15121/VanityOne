@@ -1,11 +1,10 @@
 /* Stylesheet for the layout of the page */
 
-html {
-    overflow: hidden;
-    overscroll-behavior: none;
-}
-body {
-    height: 100vh;
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
     overflow: hidden;
     overscroll-behavior: none;
 }
