@@ -6,7 +6,6 @@ body {
 
 #main {
     background: #e3decf;
-    transition: transform 4s ease;
 }
 
 .tile {

@@ -1,8 +1,13 @@
 /* Stylesheet for the layout of the page */
 
+html {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
 body {
     height: 100vh;
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
 #main {

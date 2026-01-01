@@ -13,13 +13,10 @@ let initCamX, initCamY;
 
 //Logic
 
-frame.animate(
-    {transform: `translate(${-25}vmax, ${-50}vmax)`},
-    {
-        duration:0,
-        fill: "forwards",
-    }
-)
+
+const offsetX = -(frame.offsetWidth - window.innerWidth) / 2,
+    offsetY = -(frame.offsetHeight - window.innerHeight) / 2;
+frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 
 function render(){
     frame.animate(

@@ -10,7 +10,9 @@ selector {
     margin
     height
     width
+    padding
     overflow
+    overscroll-behaviour
     touch-action
 }
 
