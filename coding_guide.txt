@@ -11,11 +11,15 @@ selector {
     height
     width
     overflow
+    touch-action
 }
 
 CSS - styling
 selector {
-
+    border-radius
+    background
+    transition
+    transform
 }
 
 center space = 13%*18%

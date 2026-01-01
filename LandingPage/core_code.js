@@ -4,6 +4,8 @@
 // Main algorithm objects
 const frame = document.getElementById("main");
 
+//Logic
+
 frame.animate(
     {transform: `translate(${-25}vw, ${-25}vh)`},
     {

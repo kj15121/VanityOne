@@ -1,11 +1,12 @@
 /* Stylesheet for the appearance of the page */
 
 body {
-    background: #e3decf;
+    background: #000000;
 }
 
 #main {
-
+    background: #e3decf;
+    transition: transform 4s ease;
 }
 
 .tile {
@@ -44,11 +45,11 @@ body {
     background: #404040;
 }
 .tile:nth-child(10) {
-    background: #3939c6;
+    background: #3f3fa6;
 }
 .tile:nth-child(11) {
     background: #84e184;
 }
 .tile:nth-child(12) {
-    background: #e0e06c;
+    background: #a2c543;
 }
