@@ -9,8 +9,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    height: 150vh;
-    width: 150vw;
+    height: 150vmax;
+    width: 150vmax;
     touch-action: none;
 }
 
@@ -19,74 +19,104 @@ body {
 }
 
 .tile:nth-child(1) {
-    top: 4%;
-    left: 8%;
-    height: 20%;
-    width: 15%;
+    top: 8%;
+    left: 7.5%;
+    height: 12%;
+    width: 18%;
 }
 .tile:nth-child(2) {
     top: 11%;
-    left: 31%;
-    height: 21%;
-    width: 16%;
-}
-.tile:nth-child(3) {
-    top: 36%;
-    left: 4%;
-    height: 23%;
+    left: 33%;
+    height: 15%;
     width: 13%;
 }
+.tile:nth-child(3) {
+    top: 25.5%;
+    left: 13%;
+    height: 18%;
+    width: 13.5%;
+}
 .tile:nth-child(4) {
-    top: 44%;
-    left: 20%;
-    height: 20%;
-    width: 18%;
+    top: 30%;
+    left: 30%;
+    height: 11%;
+    width: 24%;
 }
 .tile:nth-child(5) {
-    top: 8%;
-    left: 53%;
-    height: 27%;
-    width: 13%
+    top: 9%;
+    left: 51%;
+    height: 11%;
+    width: 18%
 }
 .tile:nth-child(6) {
-    top:17%;
-    left: 75%;
-    height: 21%;
-    width: 16%;
-}
-.tile:nth-child(7) {
-    top: 46%;
-    left: 63%;
-    height: 32%;
+    top: 24%;
+    left: 60%;
+    height: 17%;
     width: 14%;
 }
+.tile:nth-child(7) {
+    top: 12%;
+    left: 78%;
+    height: 18%;
+    width: 12%;
+}
 .tile:nth-child(8) {
-    top: 43%;
-    left: 81%;
-    height: 23%;
-    width: 17%;
+    top: 34%;
+    left: 76.7%;
+    height: 11%;
+    width: 18%;
 }
 .tile:nth-child(9) {
-    top: 76%;
-    left: 80%;
-    height: 17%;
-    width: 15%;
+    top: 48.5%;
+    left: 64%;
+    height: 12%;
+    width: 22%;
 }
 .tile:nth-child(10) {
-    top: 70%;
-    left: 10%;
-    height: 27%;
+    top: 65%;
+    left: 79%;
+    height: 19%;
     width: 14%;
 }
 .tile:nth-child(11) {
     top: 69%;
-    left: 27%;
-    height: 22%;
-    width: 19%;
+    left: 54%;
+    height: 17%;
+    width: 17%;
 }
 .tile:nth-child(12) {
-    top: 64%;
-    left: 50%;
-    height: 30%;
+    top: 58%;
+    left: 37%;
+    height: 9%;
+    width: 20%;
+}
+.tile:nth-child(13) {
+    top: 74%;
+    left: 31%;
+    height: 13%;
+    width: 17%;
+}
+.tile:nth-child(14) {
+    top: 61%;
+    left: 9%;
+    height: 20%;
+    width: 12%;
+}
+.tile:nth-child(15) {
+    top: 47%;
+    left: 23%;
+    height: 18%;
     width: 11%;
+}
+.tile:nth-child(16){
+    top: 46.5%;
+    left: 5.5%;
+    height: 11%;
+    width: 14%;
+}
+.tile:nth-child(17) {
+    top: 45%;
+    left: 42%;
+    height: 10%;
+    width: 16%;
 }

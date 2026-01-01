@@ -14,7 +14,7 @@ let initCamX, initCamY;
 //Logic
 
 frame.animate(
-    {transform: `translate(${-25}vw, ${-25}vh)`},
+    {transform: `translate(${-25}vmax, ${-50}vmax)`},
     {
         duration:0,
         fill: "forwards",

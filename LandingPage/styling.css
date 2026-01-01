@@ -21,35 +21,50 @@ body {
     background: #567676;
 }
 .tile:nth-child(2) {
-    background: #856060;
+    background: #684b4b;
 }
 .tile:nth-child(3) {
-    background: #856085;
+    background: #b8b844;
 }
 .tile:nth-child(4) {
     background: #7f70a9;
 }
 .tile:nth-child(5) {
-    background: #a6a659;
+    background: #58a13f;
 }
 .tile:nth-child(6) {
     background: #a1455c;
 }
 .tile:nth-child(7) {
-    background: #3a7878;
+    background: #8ea143;
 }
 .tile:nth-child(8) {
-    background: #e87db1;
+    background: #6e5676;
 }
 .tile:nth-child(9) {
-    background: #404040;
+    background: #56765e;
 }
 .tile:nth-child(10) {
-    background: #3f3fa6;
+    background: #783a78;
 }
 .tile:nth-child(11) {
-    background: #84e184;
+    background: #1f7a63;
 }
 .tile:nth-child(12) {
-    background: #a2c543;
+    background: #595140;
+}
+.tile:nth-child(13) {
+    background: #6a6085;
+}
+.tile:nth-child(14) {
+    background: #566776;
+}
+.tile:nth-child(15) {
+    background: #9b5f4b;
+}
+.tile:nth-child(16) {
+    background: #8053ac;
+}
+.tile:nth-child(17) {
+    background: #000000;
 }
