@@ -11,17 +11,9 @@ let touchState = false;
 let initX, initY;
 let initCamX, initCamY;
 
-//const canvas = document.getElementById('canvas'),
-  //  ctx = canvas.getContext('2d');
-
 //Logic
 
 frame.style.transform = `translate(${camX}px, ${camY}px)`;
-
-/*ctx.font = '10em Mond'
-ctx.textAlign = "center";
-ctx.textBaseline = "middle";
-ctx.fillText("VanityOne", canvas.width/2, canvas.height/2);*/
 
 function render(){
     frame.animate(

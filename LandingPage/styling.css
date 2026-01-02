@@ -5,6 +5,11 @@
     src: url('../Anurati.otf');
 }
 
+@font-face {
+    font-family: 'aquatico';
+    src: url('../Aquatico.otf');
+}
+
 body {
     background: #e3decf;
 }
@@ -70,8 +75,11 @@ body {
     background: #8053ac;
 }
 
-#center {
-    border-radius: 8px;
-    font-family: 'anurati';
-    font-size: 3em;
+#center > p:nth-child(1) {
+    font-family: 'anurati', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3.6vw;
+}
+#center > p:nth-child(2) {
+    font-family: 'aquatico', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.1vw;
 }
