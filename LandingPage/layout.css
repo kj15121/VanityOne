@@ -124,3 +124,13 @@ html, body {
     height: 10%;
     width: 16%;
 }
+
+#center {
+    z-index: -1;
+    position: fixed;
+    top: calc((100vh - (150vmax * (1/10))) / 2);
+    left: calc((100vw - (150vmax * (1/5))) / 2);
+    height: calc(150vmax * (1/10));
+    width: calc(150vmax * (1/5));
+    text-align: center;
+}

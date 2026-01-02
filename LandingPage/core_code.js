@@ -4,19 +4,24 @@
 //Main algorithm objects
 const frame = document.getElementById('main');
 
-let camX = 0,
-    camY = 0;
+let camX = -(frame.offsetWidth - window.innerWidth) / 2,
+    camY = -(frame.offsetHeight - window.innerHeight) / 2;
 
 let touchState = false;
 let initX, initY;
 let initCamX, initCamY;
 
+//const canvas = document.getElementById('canvas'),
+  //  ctx = canvas.getContext('2d');
+
 //Logic
 
+frame.style.transform = `translate(${camX}px, ${camY}px)`;
 
-const offsetX = -(frame.offsetWidth - window.innerWidth) / 2,
-    offsetY = -(frame.offsetHeight - window.innerHeight) / 2;
-frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+/*ctx.font = '10em Mond'
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+ctx.fillText("VanityOne", canvas.width/2, canvas.height/2);*/
 
 function render(){
     frame.animate(
@@ -43,11 +48,11 @@ window.addEventListener(
             winY = window.innerHeight;
         const decX = e.clientX / winX,
             decY = e.clientY / winY;
-        const maxX = frame.offsetWidth - winX,
-            maxY = frame.offsetHeight - winY;
+        const minX = (frame.offsetWidth - winX) * -1,
+            minY = (frame.offsetHeight - winY) * -1;
 
-        camX = decX * maxX * -1;
-        camY = decY * maxY * -1;
+        camX = decX * minX;
+        camY = decY * minY;
 
         render()
     }

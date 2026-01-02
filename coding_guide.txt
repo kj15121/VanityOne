@@ -3,6 +3,7 @@ HTML
 
 CSS - layout
 selector {
+    z-index
     display
     position
     top
@@ -11,6 +12,7 @@ selector {
     height
     width
     padding
+    text-align
     overflow
     overscroll-behaviour
     touch-action
@@ -22,6 +24,8 @@ selector {
     background
     transition
     transform
+    font-family
+    font-size
 }
 
 

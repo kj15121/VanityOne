@@ -1,11 +1,16 @@
 /* Stylesheet for the appearance of the page */
 
+@font-face {
+    font-family: 'anurati';
+    src: url('../Anurati.otf');
+}
+
 body {
-    background: #000000;
+    background: #e3decf;
 }
 
 #main {
-    background: #e3decf;
+    background: transparent;
 }
 
 .tile {
@@ -64,6 +69,9 @@ body {
 .tile:nth-child(16) {
     background: #8053ac;
 }
-.tile:nth-child(17) {
-    background: #000000;
+
+#center {
+    border-radius: 8px;
+    font-family: 'anurati';
+    font-size: 3em;
 }
