@@ -1,0 +1,14 @@
+#timer {
+    position: fixed;
+    top: calc(50vh - 30vmin);
+    left: calc(50vw - 37.5vmin);
+    height: 60vmin;
+    width: 75vmin;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#timer > p {
+    margin: 0;
+    padding: 0;
+}

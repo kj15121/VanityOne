@@ -1,0 +1,31 @@
+:root {
+    --background: #2b2b2b;
+    --text: #dddddd;
+    --text-green: #91c543;
+    --text-red: #c55b43;
+}
+
+@font-face {
+    font-family: 'TimerFace';
+    src: url('../Doto.ttf');
+}
+
+body{
+    background: var(--background);
+}
+
+#timer {
+    background: transparent;
+}
+
+#timer > p {
+    color: var(--text);
+    font-family: TimerFace, 'Courier New', monospace;
+}
+
+#timer > p:nth-child(1) {
+    font-size: 30vmin;
+}
+#timer > p:nth-child(2) {
+    font-size: 15vmin;
+}

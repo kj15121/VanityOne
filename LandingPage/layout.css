@@ -128,9 +128,9 @@ html, body {
 #center {
     z-index: -1;
     position: fixed;
-    top: calc((100vh - (150vmax * (1/10))) / 2);
-    left: calc((100vw - (150vmax * (1/5))) / 2);
-    height: calc(150vmax * (1/10));
-    width: calc(150vmax * (1/5));
+    top: calc(50vh - 7.5vmax);
+    left: calc(50vw - 15vmax);
+    height: 15vmax;
+    width: 30vmax;
     text-align: center;
 }
