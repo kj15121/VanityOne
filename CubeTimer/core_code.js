@@ -8,15 +8,17 @@ const msecScreen = document.getElementById('msec');
 let time, startTime;
 let seconds, mseconds;
 let clickStart, whenClickDown, isClickDown = false;
-let isInspectOT = false, state = 0;  // 0 - def; 1 - inspect; 2 - solve; 3 - DNF
+let isInspectOT = false, state = 0;  // 0 - default; 1 - inspect; 2 - solve; 3 - DNF
 let timingLoop, mouseDownLoop;
 
-//Logic
+//Logic-support
 
 function render(sec, msec) {
     secScreen.innerHTML = sec;
     msecScreen.innerHTML = msec;
 }
+
+//Logic-main
 
 function timer() {
     time = Date.now() - startTime;
@@ -52,20 +54,18 @@ function clickDown(key = {'key':' '}) {
     if (!isClickDown) {
         isClickDown = true;
 
-        if (state === 0) {
-            secScreen.style.color = 'var(--text-green)';
-            msecScreen.style.color = 'var(--text-green)';
-        }
-        else if (state === 1) {
-            clickStart = Date.now()
+        if (state === 0 || state === 1) {
+            clickStart = Date.now();
             secScreen.style.color = 'var(--text-red)';
-            if (seconds < 12000) { msecScreen.style.color = 'var(--text-red)'; }
+            if (state === 0 || time < 12000) { msecScreen.style.color = 'var(--text-red)'; }
+
         }
-        else if ((state === 2) || (state === 3)) {
+        else if (state === 2 || state === 3) {
             clearInterval(timingLoop);
             timingLoop = null;
         }
     }
+    if (!(state === 0 || state === 1)) { return null }
 
     whenClickDown = Math.trunc((Date.now() - clickStart));
     if (whenClickDown < 525) { return null }
@@ -82,6 +82,10 @@ function clickUp(key = {'key':' '}) {
     msecScreen.style.color = 'var(--text)';
 
     if (state === 0) {
+        if (whenClickDown < 525) { return null }
+        clickStart = null;
+        whenClickDown = null;
+
         startTime = Date.now();
         timingLoop = setInterval(timer, 50);
         state = 1;
@@ -112,20 +116,28 @@ function clickUp(key = {'key':' '}) {
     }
 }
 
-document.addEventListener('keydown',
+//Script
+
+document.addEventListener(
+    'keydown',
     (event) => clickDown(event)
 );
-document.addEventListener('mousedown',
+document.addEventListener(
+    'mousedown',
     () => {
         mouseDownLoop = setInterval(clickDown, 30);
-});
+    }
+);
 
-document.addEventListener('keyup',
+document.addEventListener(
+    'keyup',
     (event) => clickUp(event)
 );
-document.addEventListener('mouseup',
+document.addEventListener(
+    'mouseup',
     () => {
         clearInterval(mouseDownLoop);
         mouseDownLoop = null;
         clickUp();
-});
+    }
+);

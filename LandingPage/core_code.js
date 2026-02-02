@@ -11,9 +11,7 @@ let touchState = false;
 let initX, initY;
 let initCamX, initCamY;
 
-//Logic
-
-frame.style.transform = `translate(${camX}px, ${camY}px)`;
+//Logic-support
 
 function render(){
     frame.animate(
@@ -33,9 +31,13 @@ function viewLimit(){
     camY = Math.min(0, Math.max(minY, camY));
 }
 
+//Script
+
+frame.style.transform = `translate(${camX}px, ${camY}px)`;
+
 window.addEventListener(
     "mousemove",
-    function(e){
+    (e) => {
         const winX = window.innerWidth,
             winY = window.innerHeight;
         const decX = e.clientX / winX,
@@ -52,7 +54,7 @@ window.addEventListener(
 
 window.addEventListener(
     "touchstart",
-    function(e){
+    (e) => {
         if (e.touches.length !== 1) return;
 
         e.preventDefault();
@@ -68,7 +70,7 @@ window.addEventListener(
 
 window.addEventListener(
     "touchmove",
-    function(e){
+    (e) => {
         if (!touchState) return;
 
         e.preventDefault();
@@ -86,7 +88,7 @@ window.addEventListener(
 
 window.addEventListener(
     "touchend",
-    function() {
+    () => {
         touchState = false;
     }
 );
