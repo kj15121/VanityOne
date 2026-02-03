@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: 'anurati';
-    src: url('../Anurati.otf');
+    src: url('../Resources/Anurati.otf');
 }
 
 @font-face {
     font-family: 'aquatico';
-    src: url('../Aquatico.otf');
+    src: url('../Resources/Aquatico.otf');
 }
 
 body {
@@ -21,6 +21,7 @@ body {
 .tile {
     border-radius: 2vmax;
     transition: transform 0.6s ease;
+    font-size: 3vmax;
 }
 .tile:hover {
     transform: scale(1.1);

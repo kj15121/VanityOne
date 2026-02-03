@@ -9,6 +9,15 @@ html, body {
     overscroll-behavior: none;
 }
 
+a {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
 #main {
     position: absolute;
     top: 0;
@@ -19,7 +28,10 @@ html, body {
 }
 
 .tile {
+    display: flex;
     position: absolute;
+    justify-content: center;
+    align-items: center;
 }
 
 .tile:nth-child(1) {

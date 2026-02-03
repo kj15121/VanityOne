@@ -1,3 +1,5 @@
+/* Stylesheet for the layout of the page */
+
 #timer {
     position: fixed;
     top: calc(50vh - 30vmin);
@@ -11,4 +13,31 @@
 #timer > p {
     margin: 0;
     padding: 0;
+}
+
+#stats {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+@media (min-width: 150vh) {
+    #stats {
+        height: 100%;
+        width: calc(50vw - 40vmin);
+    }
+}
+@media (max-width: 150vh) and (min-width: 100vh) {
+    #timer {
+        top: 0;
+    }
+    #stats {
+        height: 40vh;
+        width: 100%
+    }
+}
+@media (max-width: 100vh) {
+    #stats {
+        height: calc(50vh - 30vmin);
+        width: 100%;
+    }
 }

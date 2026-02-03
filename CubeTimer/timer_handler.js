@@ -4,6 +4,7 @@
 //Main algorithm objects
 const secScreen = document.getElementById('sec');
 const msecScreen = document.getElementById('msec');
+const beep = document.createElement("audio");
 
 let time, startTime;
 let seconds, mseconds;
@@ -16,6 +17,15 @@ let timingLoop, mouseDownLoop;
 function render(sec, msec) {
     secScreen.innerHTML = sec;
     msecScreen.innerHTML = msec;
+}
+
+beep.src = '../Resources/beep.mp3';
+beep.setAttribute("preload", "auto");
+beep.setAttribute("controls", "none");
+beep.style.display = "none";
+beep.alert = function() {
+    beep.play()
+        .catch(() => { console.error("audio error"); })
 }
 
 //Logic-main
@@ -43,6 +53,8 @@ function timer() {
             secScreen.style.color = 'var(--text-red)';
             state = 3;
         }
+
+        if ((11950 < time && time < 12050) || (14950 < time && time < 15050)) { beep.alert(); }
     }
     else if (state === 2) { //During solve
         render(seconds, mseconds);

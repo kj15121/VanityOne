@@ -7,12 +7,16 @@ selector {
     display
     position
     top
+    bottom
     left
+    right
     margin
     height
     width
     padding
     text-align
+    justify-content
+    align-items
     overflow
     overscroll-behaviour
     touch-action

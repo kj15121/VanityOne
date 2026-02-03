@@ -1,5 +1,8 @@
+/* Stylesheet for the appearance of the page */
+
 :root {
     --background: #2b2b2b;
+    --background-element: #393939;
     --text: #dddddd;
     --text-green: #91c543;
     --text-red: #c55b43;
@@ -7,12 +10,14 @@
 
 @font-face {
     font-family: 'TimerFace';
-    src: url('../Doto.ttf');
+    src: url('../Resources/Doto.ttf');
 }
 
 body{
     background: var(--background);
 }
+
+/* timer */
 
 #timer {
     background: transparent;
@@ -28,4 +33,10 @@ body{
 }
 #timer > p:nth-child(2) {
     font-size: 15vmin;
+}
+
+/* Stats */
+
+#stats {
+    background: var(--background-element);
 }
