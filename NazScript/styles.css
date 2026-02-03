@@ -1,0 +1,154 @@
+/* Stylesheet for the appearance of the page */
+
+/* Main */
+
+:root {
+    --major: #1e1f22;
+    --minor: #2b2d30;
+    --minorDark: #242529;
+    --text: #cfcffc;
+    --textHover: #000000;
+    --textLabel: #ffffff;
+}
+
+body {
+    background-color: var(--major);
+    color: var(--text);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header {
+    font-size: 240%;
+    color: var(--textLabel);
+}
+
+header > button {
+    border-color: #00000000;
+    background-color: #00000000;
+    color: var(--text);
+}
+header > button:hover {color: var(--textLabel);}
+
+/* Rotors */
+
+#rotater {
+    border-radius: 10px;
+    background-color: var(--major);
+    cursor: default;
+}
+#rotater > section {
+    background-color: var(--minor);
+    text-align: center;
+}
+
+.rtr_label {
+    font-size: 130%;
+    color: var(--textLabel);
+}
+@media (min-width: 701px){
+    #rtr_1 {border-radius: 8px 3px 3px 8px;}
+    #rtr_2 {border-radius: 3px 3px 3px 3px;}
+    #rtr_3 {border-radius: 3px 8px 8px 3px;}
+}
+@media (max-width: 700px) {
+    #rtr_1 {border-radius: 8px 8px 3px 3px;}
+    #rtr_2 {border-radius: 3px 3px 3px 3px;}
+    #rtr_3 {border-radius: 3px 3px 8px 8px;}
+}
+
+.rtr_disc,
+.rtr_spin {
+    border-radius: 4px;
+    background-color: var(--major);
+}
+
+.rtr_disc_bottom,
+.rtr_spin_bottom {border-radius: 5px;}
+.rtr_disc_bottom > div,
+.rtr_spin_bottom > div {
+    border-radius: 3px;
+    background-color: var(--minor);
+}
+
+.rtr_disc_bottom > div:hover,
+.rtr_spin_bottom > div:hover:not(.rtr_spin_center) {
+    font-weight: bolder;
+    color: var(--textHover);
+}
+.rtr_spin_center {background-color: var(--minorDark) !important;}
+
+.material-icons {
+    align-self: center;
+    font-size: 130%;
+}
+
+/* Plug Board (swaper) */
+
+#swaper {
+    border-radius: 8px;
+    border: 4px solid var(--major);
+    cursor: default;
+    background-color: var(--minor);
+}
+
+#spr_label {
+    text-align: center;
+    color: var(--textLabel);
+    font-size: 130%;
+}
+
+#spr_letters {
+    border-radius: 3px;
+    background-color: var(--major);
+}
+#spr_pairs {
+    border-radius: 3px 3px 8px 8px;
+    background-color: var(--major);
+}
+
+#spr_letters > div > div,
+#spr_pairs > div > div {
+    border-radius: 3px;
+    background-color: var(--minor);
+    text-align: center;
+}
+#spr_letters > div > div:hover,
+#spr_pairs > div > div:hover {
+    color: var(--textHover);
+    font-weight: bolder;
+}
+
+#s13 {border-bottom-right-radius: 5px !important;}
+@media (min-width: 701px) {#s1 {border-bottom-left-radius: 5px !important;}}
+@media (max-width: 700px) {#s8 {border-bottom-left-radius: 5px !important;}}
+
+/* String Exchanger (teller) */
+
+#teller {
+    border-radius: 8px;
+    background-color: var(--minor);
+}
+
+#tlr_label {
+    text-align: center;
+    color: var(--textLabel);
+    font-size: 130%;
+}
+
+#tI, #tB {
+    border-radius: 3px;
+    border: none;
+    background-color: var(--major);
+    color: var(--text);
+    font-size: 100%;
+}
+#tB:hover {
+    color: var(--textHover);
+    font-weight: bolder;
+}
+
+#tlr_output {
+    border-radius: 3px 3px 5px 5px;
+    background-color: var(--major);
+    font-style: italic;
+    color: var(--textLabel);
+}

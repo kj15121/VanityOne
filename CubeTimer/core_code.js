@@ -25,7 +25,7 @@ function timer() {
     seconds = String(Math.floor((time / 1000) % 60)).padStart(2, '0');
     mseconds = String(Math.trunc(time % 1000)).padStart(3, '0');
 
-    if (state === 1) {
+    if (state === 1) {  //During inspection
         if (time < 12000) {
             render(seconds, 'inspect');
         }
@@ -44,14 +44,14 @@ function timer() {
             state = 3;
         }
     }
-    else if (state === 2) {
+    else if (state === 2) { //During solve
         render(seconds, mseconds);
     }
 }
 
 function clickDown(key = {'key':' '}) {
     if (!(key['key'] === ' ')) { return null }
-    if (!isClickDown) {
+    if (!isClickDown) { //First key-detect
         isClickDown = true;
 
         if (state === 0 || state === 1) {
@@ -66,6 +66,7 @@ function clickDown(key = {'key':' '}) {
         }
     }
     if (!(state === 0 || state === 1)) { return null }
+    //Usable key continuations
 
     whenClickDown = Math.trunc((Date.now() - clickStart));
     if (whenClickDown < 525) { return null }
@@ -77,6 +78,7 @@ function clickDown(key = {'key':' '}) {
 function clickUp(key = {'key':' '}) {
     if (!(key['key'] === ' ')) { return null }
     isClickDown = false;
+    //Key released
 
     secScreen.style.color = 'var(--text)';
     msecScreen.style.color = 'var(--text)';

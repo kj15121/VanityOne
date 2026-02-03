@@ -1,0 +1,163 @@
+/* Stylesheet for the layout of the page */
+
+/* Header */
+
+header {
+    display: flex;
+    flex-direction: row;
+    height: 160%;
+    width: 100%;
+    margin-bottom: 15px;
+    align-items: stretch;
+    text-align: center;
+}
+
+header > div {
+    width: 95%;
+}
+header > button {
+    width: 5%;
+}
+
+/* Rotors */
+
+#rotater {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 701px) {
+    #rotater {flex-direction: row;}
+    #rotater > section {width: 33%; margin: 4px;}
+    #rtr_1 {margin-right: 2px !important;}
+    #rtr_2 {margin: 4px 2px !important;}
+    #rtr_3 {margin-left: 2px !important;}
+}
+@media (max-width: 700px) {
+    #rotater {flex-direction: column;}
+    #rotater > section {margin: 4px;}
+    #rtr_1 {margin-bottom: 2px;}
+    #rtr_2 {margin: 4px 4px;}
+    #rtr_3 {margin-top: 2px;}
+}
+
+.rtr_disc,
+.rtr_spin {
+    margin: 5px;
+}
+
+.rtr_disc_bottom,
+.rtr_spin_bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.rtr_disc_bottom > div {
+    width:20%;
+    margin: 4px 2px;
+}
+.rtr_spin_bottom > div {
+    width:33%;
+    margin: 4px 2px;
+}
+
+.rtr_disc_left,
+.rtr_spin_left {
+    margin-left: 4px !important;
+}
+.rtr_disc_right,
+.rtr_spin_right {
+    margin-right: 4px !important;
+}
+
+/* Plug board (swaper) */
+
+#swaper {padding-bottom: 1px;}
+
+#spr_label {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#spr_letters,
+#spr_pairs {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#spr_letters > div,
+#spr_pairs > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+#spr_letters > div > div {width: calc(100%/13);}
+#spr_pairs_left > div {width: calc(100%/7);}
+#spr_pairs_right > div {width: calc(100%/6);}
+
+#spr_letters > div > div,
+#spr_pairs > div > div {
+    margin: 4px 2px;
+}
+#A, #s1 {margin-left: 4px !important;}
+#Z, #s13 {margin-right: 4px !important;}
+
+@media (min-width: 701px) {
+    #spr_letters {flex-direction: row;}
+
+    #spr_pairs {flex-direction: row;}
+    #spr_pairs_left {width: calc(100% * 7/13);}
+    #spr_pairs_right {width: calc(100% * 6/13)}
+}
+@media (max-width: 700px) {
+    #spr_letters {flex-direction: column;}
+    #M {margin-right: 4px !important;}
+    #N {margin-left: 4px !important;}
+
+    #spr_pairs {flex-direction: column;}
+    #spr_pairs_left,
+    #spr_pairs_right {width: 100%;}
+    #spr_pairs_left > div {margin-bottom: calc(5px/2) !important;}
+    #spr_pairs_right > div {margin-top: calc(5px/2) !important;}
+    #s7 {margin-right: 4px !important;}
+    #s8 {margin-left: 4px !important;}
+}
+
+/* String Exchanger (teller) */
+
+#teller {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+#tlr_label {margin: 4px 4px 2px 4px;}
+
+#tlr_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#tI {
+    width: 85%;
+    margin: 2px 2px 2px 4px;
+}
+#tB {
+    width: 15%;
+    margin: 2px 4px 2px 2px;
+}
+
+#tlr_output {
+    margin: 2px 4px 4px 4px;
+    padding: 2px 0 2px 5px;
+}

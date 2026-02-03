@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="layout.css" />
+  <script type="module" src="core_code.js"></script>
+
+  <title>NazScript 3.1</title>
+</head>
+<body>
+
+  <header>
+    <button id="dm_switch" class="material-icons" onclick="displayMode()">light_mode</button>
+    <div>NazScript 3 - V2 Redone</div>
+  </header>
+
+  <section id="rotater">
+    <section id="rtr_1">
+      <div class="rtr_label">Rotor 1</div>
+      <div class="rtr_disc">
+        <div class="rtr_disc_top">Disc</div>
+        <div class="rtr_disc_bottom">
+          <div id="r1.1" class="rtr_disc_left" onclick="rtr_disc(1, 1)">1</div>
+          <div id="r1.2" onclick="rtr_disc(1, 2)">2</div>
+          <div id="r1.3" onclick="rtr_disc(1, 3)">3</div>
+          <div id="r1.4" onclick="rtr_disc(1, 4)">4</div>
+          <div id="r1.5" class="rtr_disc_right" onclick="rtr_disc(1, 5)">5</div>
+        </div>
+      </div>
+      <div class="rtr_spin">
+        <div class="rtr_spin_top">Starting Position</div>
+        <div class="rtr_spin_bottom">
+          <div class="rtr_spin_left material-icons" onclick="rtr_spin(1, -1)">chevron_left</div>
+          <div class="rtr_spin_center" id="r1.s">A</div>
+          <div class="rtr_spin_right material-icons" onclick="rtr_spin(1, 1)">chevron_right</div>
+        </div>
+      </div>
+    </section>
+    <section id="rtr_2">
+      <div class="rtr_label">Rotor 2</div>
+      <div class="rtr_disc">
+        <div class="rtr_disc_top">Disc</div>
+        <div class="rtr_disc_bottom">
+          <div id="r2.1" class="rtr_disc_left" onclick="rtr_disc(2, 1)">1</div>
+          <div id="r2.2" onclick="rtr_disc(2, 2)">2</div>
+          <div id="r2.3" onclick="rtr_disc(2, 3)">3</div>
+          <div id="r2.4" onclick="rtr_disc(2, 4)">4</div>
+          <div id="r2.5" class="rtr_disc_right" onclick="rtr_disc(2, 5)">5</div>
+        </div>
+      </div>
+      <div class="rtr_spin">
+        <div class="rtr_spin_top">Starting Position</div>
+        <div class="rtr_spin_bottom">
+          <div class="rtr_spin_left material-icons" onclick="rtr_spin(2, -1)">chevron_left</div>
+          <div class="rtr_spin_center" id="r2.s">A</div>
+          <div class="rtr_spin_right material-icons" onclick="rtr_spin(2, 1)">chevron_right</div>
+        </div>
+      </div>
+    </section>
+    <section id="rtr_3">
+      <div class="rtr_label">Rotor 3</div>
+      <div class="rtr_disc">
+        <div class="rtr_disc_top">Disc</div>
+        <div class="rtr_disc_bottom">
+          <div id="r3.1" class="rtr_disc_left" onclick="rtr_disc(3, 1)">1</div>
+          <div id="r3.2" onclick="rtr_disc(3, 2)">2</div>
+          <div id="r3.3" onclick="rtr_disc(3, 3)">3</div>
+          <div id="r3.4" onclick="rtr_disc(3, 4)">4</div>
+          <div id="r3.5" class="rtr_disc_right" onclick="rtr_disc(3, 5)">5</div>
+        </div>
+      </div>
+      <div class="rtr_spin">
+        <div class="rtr_spin_top">Starting Position</div>
+        <div class="rtr_spin_bottom">
+          <div class="rtr_spin_left material-icons" onclick="rtr_spin(3, -1)">chevron_left</div>
+          <div class="rtr_spin_center" id="r3.s">A</div>
+          <div class="rtr_spin_right material-icons" onclick="rtr_spin(3, 1)">chevron_right</div>
+        </div>
+      </div>
+    </section>
+   </section>
+
+  <section id="swaper">
+    <div id="spr_label">Plug Board</div>
+    <section id="spr_letters">
+      <div>
+        <div id="A" onclick="spr_letter(id)">A</div>
+        <div id="B" onclick="spr_letter(id)">B</div>
+        <div id="C" onclick="spr_letter(id)">C</div>
+        <div id="D" onclick="spr_letter(id)">D</div>
+        <div id="E" onclick="spr_letter(id)">E</div>
+        <div id="F" onclick="spr_letter(id)">F</div>
+        <div id="G" onclick="spr_letter(id)">G</div>
+        <div id="H" onclick="spr_letter(id)">H</div>
+        <div id="I" onclick="spr_letter(id)">I</div>
+        <div id="J" onclick="spr_letter(id)">J</div>
+        <div id="K" onclick="spr_letter(id)">K</div>
+        <div id="L" onclick="spr_letter(id)">L</div>
+        <div id="M" onclick="spr_letter(id)">M</div>
+      </div>
+      <div>
+        <div id="N" onclick="spr_letter(id)">N</div>
+        <div id="O" onclick="spr_letter(id)">O</div>
+        <div id="P" onclick="spr_letter(id)">P</div>
+        <div id="Q" onclick="spr_letter(id)">Q</div>
+        <div id="R" onclick="spr_letter(id)">R</div>
+        <div id="S" onclick="spr_letter(id)">S</div>
+        <div id="T" onclick="spr_letter(id)">T</div>
+        <div id="U" onclick="spr_letter(id)">U</div>
+        <div id="V" onclick="spr_letter(id)">V</div>
+        <div id="W" onclick="spr_letter(id)">W</div>
+        <div id="X" onclick="spr_letter(id)">X</div>
+        <div id="Y" onclick="spr_letter(id)">Y</div>
+        <div id="Z" onclick="spr_letter(id)">Z</div>
+      </div>
+    </section>
+    <section id="spr_pairs">
+      <div id="spr_pairs_left">
+        <div id="s1" onclick="spr_pair(id)">- : -</div>
+        <div id="s2" onclick="spr_pair(id)">- : -</div>
+        <div id="s3" onclick="spr_pair(id)">- : -</div>
+        <div id="s4" onclick="spr_pair(id)">- : -</div>
+        <div id="s5" onclick="spr_pair(id)">- : -</div>
+        <div id="s6" onclick="spr_pair(id)">- : -</div>
+        <div id="s7" onclick="spr_pair(id)">- : -</div>
+      </div>
+      <div id="spr_pairs_right">
+        <div id="s8" onclick="spr_pair(id)">- : -</div>
+        <div id="s9" onclick="spr_pair(id)">- : -</div>
+        <div id="s10" onclick="spr_pair(id)">- : -</div>
+        <div id="s11" onclick="spr_pair(id)">- : -</div>
+        <div id="s12" onclick="spr_pair(id)">- : -</div>
+        <div id="s13" onclick="spr_pair(id)">- : -</div>
+      </div>
+    </section>
+  </section>
+
+  <section id="teller">
+    <div id="tlr_label">Text Handler</div>
+    <div id="tlr_input">
+      <label for="tI"></label><input id="tI" placeholder="Enter the text to encode" />
+      <button id="tB" onclick="hustle()">Encrypt</button>
+    </div>
+    <div id="tlr_output">Null</div>
+  </section>
+</body>
+</html>
