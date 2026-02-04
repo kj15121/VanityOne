@@ -24,9 +24,13 @@ body{
     background: var(--background);
 }
 
-th, td{
+table {
     border: 2px solid var(--background);
     border-collapse: collapse;
+}
+
+th, td{
+    border: 1px solid var(--background);
     color: var(--text-offset);
     font-family: TextFace, sans-serif;
     text-align: center;
