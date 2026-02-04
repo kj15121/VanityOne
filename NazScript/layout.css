@@ -5,11 +5,11 @@
 header {
     display: flex;
     flex-direction: row;
+    margin-bottom: 15px;
     height: 160%;
     width: 100%;
-    margin-bottom: 15px;
-    align-items: stretch;
     text-align: center;
+    align-items: stretch;
 }
 
 header > div {
@@ -23,14 +23,14 @@ header > button {
 
 #rotater {
     display: flex;
+    margin-bottom: 15px;
     justify-content: center;
     align-items: stretch;
-    margin-bottom: 15px;
 }
 
 @media (min-width: 701px) {
     #rotater {flex-direction: row;}
-    #rotater > section {width: 33%; margin: 4px;}
+    #rotater > section {margin: 4px; width: 33%; }
     #rtr_1 {margin-right: 2px !important;}
     #rtr_2 {margin: 4px 2px !important;}
     #rtr_3 {margin-left: 2px !important;}
@@ -52,17 +52,17 @@ header > button {
 .rtr_spin_bottom {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: stretch;
+    justify-content: center;
 }
 
 .rtr_disc_bottom > div {
-    width:20%;
     margin: 4px 2px;
+    width:20%;
 }
 .rtr_spin_bottom > div {
-    width:33%;
     margin: 4px 2px;
+    width:33%;
 }
 
 .rtr_disc_left,
@@ -79,23 +79,23 @@ header > button {
 #swaper {padding-bottom: 1px;}
 
 #spr_label {
-    width: 100%;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 #spr_letters,
 #spr_pairs {
-    margin: 5px;
     display: flex;
+    margin: 5px;
     justify-content: center;
     align-items: stretch;
 }
 
 #spr_letters > div,
 #spr_pairs > div {
-    width: 100%;
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: center;
     align-items: stretch;
 }
@@ -149,12 +149,12 @@ header > button {
 }
 
 #tI {
-    width: 85%;
     margin: 2px 2px 2px 4px;
+    width: 85%;
 }
 #tB {
-    width: 15%;
     margin: 2px 4px 2px 2px;
+    width: 15%;
 }
 
 #tlr_output {

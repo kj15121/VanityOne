@@ -17,13 +17,13 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 header {
-    font-size: 240%;
     color: var(--textLabel);
+    font-size: 240%;
 }
 
 header > button {
-    border-color: #00000000;
-    background-color: #00000000;
+    border-color: transparent;
+    background-color: transparent;
     color: var(--text);
 }
 header > button:hover {color: var(--textLabel);}
@@ -41,8 +41,8 @@ header > button:hover {color: var(--textLabel);}
 }
 
 .rtr_label {
-    font-size: 130%;
     color: var(--textLabel);
+    font-size: 130%;
 }
 @media (min-width: 701px){
     #rtr_1 {border-radius: 8px 3px 3px 8px;}
@@ -71,8 +71,8 @@ header > button:hover {color: var(--textLabel);}
 
 .rtr_disc_bottom > div:hover,
 .rtr_spin_bottom > div:hover:not(.rtr_spin_center) {
-    font-weight: bolder;
     color: var(--textHover);
+    font-weight: bolder;
 }
 .rtr_spin_center {background-color: var(--minorDark) !important;}
 
@@ -84,16 +84,16 @@ header > button:hover {color: var(--textLabel);}
 /* Plug Board (swaper) */
 
 #swaper {
-    border-radius: 8px;
     border: 4px solid var(--major);
-    cursor: default;
+    border-radius: 8px;
     background-color: var(--minor);
+    cursor: default;
 }
 
 #spr_label {
-    text-align: center;
     color: var(--textLabel);
     font-size: 130%;
+    text-align: center;
 }
 
 #spr_letters {
@@ -129,14 +129,14 @@ header > button:hover {color: var(--textLabel);}
 }
 
 #tlr_label {
-    text-align: center;
     color: var(--textLabel);
     font-size: 130%;
+    text-align: center;
 }
 
 #tI, #tB {
-    border-radius: 3px;
     border: none;
+    border-radius: 3px;
     background-color: var(--major);
     color: var(--text);
     font-size: 100%;
@@ -149,6 +149,6 @@ header > button:hover {color: var(--textLabel);}
 #tlr_output {
     border-radius: 3px 3px 5px 5px;
     background-color: var(--major);
-    font-style: italic;
     color: var(--textLabel);
+    font-style: italic;
 }

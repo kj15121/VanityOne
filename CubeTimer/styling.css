@@ -1,23 +1,48 @@
 /* Stylesheet for the appearance of the page */
 
+/* Main */
+
 :root {
     --background: #2b2b2b;
     --background-element: #393939;
     --text: #dddddd;
     --text-green: #91c543;
     --text-red: #c55b43;
+    --text-offset: #dcdcdc;
 }
 
 @font-face {
     font-family: 'TimerFace';
     src: url('../Resources/Doto.ttf');
 }
+@font-face {
+    font-family: 'TextFace';
+    src: url('../Resources/Quantico.ttf');
+}
 
 body{
     background: var(--background);
 }
 
-/* timer */
+th, td{
+    border: 2px solid var(--background);
+    border-collapse: collapse;
+    color: var(--text-offset);
+    font-family: TextFace, sans-serif;
+    text-align: center;
+}
+@media (max-width: 175vh) { /*mid and thin screens*/
+    th, td {
+        font-size: 2vmin;
+    }
+}
+@media (max-width: 710px) and (min-width: 175vh) {/*small screen*/
+    th, td {
+        font-size: 1.2vw;
+    }
+}
+
+/* Timer */
 
 #timer {
     background: transparent;

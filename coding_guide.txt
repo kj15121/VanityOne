@@ -5,6 +5,7 @@ CSS - layout
 selector {
     z-index
     display
+    flex-direction
     position
     top
     bottom
@@ -17,6 +18,7 @@ selector {
     text-align
     justify-content
     align-items
+    table-layout
     overflow
     overscroll-behaviour
     touch-action
@@ -24,13 +26,21 @@ selector {
 
 CSS - styling
 selector {
-    border-radius
+    align-self
+    border
+        -color
+        -radius
+        -collapse
     background
     transition
     transform
     color
-    font-family
-    font-size
+    font
+        -family
+        -size
+        -weight
+    text-align
+    cursor
 }
 
 
