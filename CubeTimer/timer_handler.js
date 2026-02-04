@@ -1,6 +1,8 @@
 // The code directly linked to the page
 "use strict"
 
+import Solve from './stats_handler.js';
+
 //Main algorithm objects
 const secScreen = document.getElementById('sec');
 const msecScreen = document.getElementById('msec');
@@ -10,7 +12,8 @@ const beep = document.createElement("audio");
 let time, startTime;
 let seconds, mseconds;
 let clickStart, whenClickDown, isClickDown = false;
-let isInspectOT = false, state = 0;  // 0 - default; 1 - inspect; 2 - solve; 3 - DNF
+let isInspectOT = false, isDNF = false;
+let state = 0;  // 0 - default; 1 - inspect; 2 - solve; 3 - DNF
 let timingLoop, mouseDownLoop;
 
 //Logic-support
@@ -52,10 +55,14 @@ function timer() {
         else {
             render(seconds, 'DNF');
             secScreen.style.color = 'var(--text-red)';
-            state = 3;
+            isDNF = true;
         }
 
-        if ((11950 < time && time < 12050) || (14950 < time && time < 15050)) { beep.alert(); }
+        if ( (11950 < time && time < 12050) ||
+             (14950 < time && time < 15050) ||
+             (16950 < time && time < 17050) ) {
+            beep.alert();
+        }
     }
     else if (state === 2) { //During solve
         render(seconds, mseconds[0]);
@@ -73,7 +80,7 @@ function clickDown(key = {'key':' '}) {
             if (state === 0 || time < 12000) { msecScreen.style.color = 'var(--text-red)'; }
 
         }
-        else if (state === 2 || state === 3) {
+        else if (state === 2) {
             render(seconds, mseconds);
             clearInterval(timingLoop);
             timingLoop = null;
@@ -121,14 +128,19 @@ function clickUp(key = {'key':' '}) {
     else if (state === 2) {
         state = 0;
 
-        if (!isInspectOT) { return null }
-        secScreen.innerHTML = seconds + '+2';
-        secScreen.style.color = 'var(--text-red)';
-        isInspectOT = false;
-    }
-    else if (state === 3) {
-        state = 0;
-        render('null', 'DNF');
+        if (isInspectOT) {
+            secScreen.innerHTML = seconds + '+2';
+            secScreen.style.color = 'var(--text-red)';
+            isInspectOT = false;
+            new Solve(time, 1);
+        }
+        else if (isDNF) {
+            msecScreen.innerHTML = 'DNF'
+            secScreen.style.color = 'var(--text-red)';
+            isDNF = false;
+            new Solve(time, 2);
+        }
+        else { new Solve(time, 0); }
     }
 }
 

@@ -70,7 +70,6 @@ window.spr_pair = spr_pair;
 
 function sprRender(){
     //Render swaper configuration
-    console.log(swaper)
     swaperLength = (swaper.length)/2
     for (let i = 0; i < swaperLength; i++) {
         document.getElementById(`s${i + 1}`).innerHTML = `${swaper[2 * i]} : ${swaper[(2 * i) + 1]}`;
