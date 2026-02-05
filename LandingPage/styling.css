@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: 'anurati';
-    src: url('../Resources/Anurati.otf');
+    src: url('../Assets/Anurati.otf');
 }
 
 @font-face {
     font-family: 'aquatico';
-    src: url('../Resources/Aquatico.otf');
+    src: url('../Assets/Aquatico.otf');
 }
 
 body {

@@ -11,7 +11,7 @@ let bestStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};
 
 //Logic-support
 
-export function Solve(time, state) {
+export function Solve(time, state=0) {
     this.time = time;
     this.state = [null, "+2", "DNF"][state];
     if (state === 1) { this.time += 2000; }
@@ -40,7 +40,7 @@ function purifyTTime(solveTimes) {
 //Logic-main
 
 function calcStats() {
-    let solveTimes = [], solveTimeSum;
+    let solveTimes = [], solveTimeSum = 0;
     let countDNF = 0;
     let totalSolves = solves.length;
 
@@ -118,11 +118,8 @@ function renderAppend(solve) {
             if (!(currentStat === '-')) {
                 statsScreen.rows[i].cells[1].style.color = 'var(--text-green)';
 
-                if (currentStat === bestStat && i < 5 && !(bestStat === 'DNF')) {
+                if (i < 5) {
                     solveScreen.rows[index].cells[i - 1].style.color = 'var(--text-green)';
-                }
-                else if (bestStat === 'DNF') {
-                    solveScreen.rows[index].cells[i - 1].style.color = 'var(--text-red)';
                 }
             }
             else if (currentStat === 'DNF') {

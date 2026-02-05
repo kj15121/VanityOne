@@ -14,11 +14,11 @@
 
 @font-face {
     font-family: 'TimerFace';
-    src: url('../Resources/Doto.ttf');
+    src: url('../Assets/Doto.ttf');
 }
 @font-face {
     font-family: 'TextFace';
-    src: url('../Resources/Quantico.ttf');
+    src: url('../Assets/Quantico.ttf');
 }
 
 body{
@@ -69,4 +69,11 @@ th, td{
 
 #stats {
     background: var(--background-element);
+}
+
+#stats_list {
+    overflow-y: scroll;
+}
+#stats_list::-webkit-scrollbar {
+    display: none;
 }

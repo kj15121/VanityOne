@@ -13,7 +13,7 @@ let time, startTime;
 let seconds, mseconds;
 let clickStart, whenClickDown, isClickDown = false;
 let isInspectOT = false, isDNF = false;
-let state = 0;  // 0 - default; 1 - inspect; 2 - solve; 3 - DNF
+let state = 0;  // 0 - default; 1 - inspect; 2 - solve
 let timingLoop, mouseDownLoop;
 
 //Logic-support
@@ -23,7 +23,7 @@ function render(sec, msec) {
     msecScreen.innerHTML = msec;
 }
 
-beep.src = '../Resources/beep.mp3';
+beep.src = '../Assets/beep.mp3';
 beep.setAttribute("preload", "auto");
 beep.setAttribute("controls", "none");
 beep.style.display = "none";
@@ -49,7 +49,7 @@ function timer() {
         }
         else if (time < 17000) {
             render(seconds, '+2');
-            if (!isClickDown) { msecScreen.style.color = 'var(--text-red)'; }
+            msecScreen.style.color = 'var(--text-red)'
             isInspectOT = true;
         }
         else {
@@ -82,15 +82,15 @@ function clickDown(key = {'key':' '}) {
 
         }
         else if (state === 2) {
-            render(seconds, mseconds);
             clearInterval(timingLoop);
             timingLoop = null;
+            render(seconds, mseconds);
         }
     }
     if (!(state === 0 || state === 1)) { return null }
     //Usable key continuations
 
-    whenClickDown = Math.trunc((Date.now() - clickStart));
+    whenClickDown = Date.now() - clickStart;
     if (whenClickDown < 525) { return null }
 
     secScreen.style.color = 'var(--text-green)';
@@ -111,7 +111,9 @@ function clickUp(key = {'key':' '}) {
         whenClickDown = null;
 
         startTime = Date.now();
-        timingLoop = setInterval(timer, 50);
+        timingLoop = setInterval(timer, 51);
+
+        document.getElementById('stats').style.display = 'none'
         state = 1;
     }
     else if (state === 1) {
@@ -124,11 +126,10 @@ function clickUp(key = {'key':' '}) {
 
         startTime = Date.now();
         timingLoop = setInterval(timer, 23);
+
         state = 2;
     }
     else if (state === 2) {
-        state = 0;
-
         if (isInspectOT) {
             secScreen.innerHTML = seconds + '+2';
             secScreen.style.color = 'var(--text-red)';
@@ -141,7 +142,10 @@ function clickUp(key = {'key':' '}) {
             isDNF = false;
             new Solve(time, 2);
         }
-        else { new Solve(time, 0); }
+        else { new Solve(time); }
+
+        document.getElementById('stats').style.display = 'flex'
+        state = 0;
     }
 }
 
@@ -157,6 +161,13 @@ catchScreen.addEventListener(
         mouseDownLoop = setInterval(clickDown, 30);
     }
 );
+catchScreen.addEventListener(
+    'touchstart',
+    (event) => {
+        event.preventDefault();
+        mouseDownLoop = setInterval(clickDown, 30);
+    }
+)
 
 document.addEventListener(
     'keyup',
@@ -165,6 +176,24 @@ document.addEventListener(
 catchScreen.addEventListener(
     'mouseup',
     () => {
+        clearInterval(mouseDownLoop);
+        mouseDownLoop = null;
+        clickUp();
+    }
+);
+catchScreen.addEventListener(
+    'touchend',
+    (event) => {
+        event.preventDefault();
+        clearInterval(mouseDownLoop);
+        mouseDownLoop = null;
+        clickUp();
+    }
+);
+catchScreen.addEventListener(
+    'touchcancel',
+    (event) => {
+        event.preventDefault();
         clearInterval(mouseDownLoop);
         mouseDownLoop = null;
         clickUp();
