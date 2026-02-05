@@ -11,39 +11,28 @@ let bestStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};
 
 //Logic-support
 
-export default function Solve(time, state) {
+export function Solve(time, state) {
     this.time = time;
     this.state = [null, "+2", "DNF"][state];
     if (state === 1) { this.time += 2000; }
     solves.push(this);
     renderAppend(this);
-    console.log(solves)
 }
 
 function purifyTTime(solveTimes) {
     let min,
         max = Math.max(...solveTimes);
-
     let minTrack = false, maxTrack = false;
-    let toRemove = [];
-
     let solveTimeSum = 0;
 
-    if (solveTimes.contains('DNF')) { min = 'DNF'; }
+    if (solveTimes.includes('DNF')) { min = 'DNF'; }
     else { min = Math.min(...solveTimes); }
 
-    solveTimes.forEach((item, index) => {
-        if (item === min && !minTrack) {
-            minTrack = true;
-            toRemove.push(index);
-        }
-        if (item === max && !maxTrack) {
-            maxTrack = true;
-            toRemove.push(index);
-        }
+    solveTimes.forEach((item) => {
+        if (item === min && !minTrack) { minTrack = true; }
+        else if (item === max && !maxTrack) { maxTrack = true; }
+        else { solveTimeSum += item; }
     });
-    toRemove.forEach((item) => { solveTimes.splice(item, 1); });
-    solveTimes.forEach(item => { solveTimeSum += item; });
 
     return solveTimeSum
 }
@@ -51,13 +40,17 @@ function purifyTTime(solveTimes) {
 //Logic-main
 
 function calcStats() {
-    let solveTimes = [], solveTimeSum = 0;
+    let solveTimes = [], solveTimeSum;
     let countDNF = 0;
+    let totalSolves = solves.length;
 
-    if (solves.length < 3) { return null }
+    if (totalSolves < 3) { return null }
     for (let i = 1; i < 4; i++) {
-        solveTimes.push(solves[solves.length - i].time);
-        if (solves[solves.length - i].state === 'DNF') { countDNF += 1;}
+        if (solves[totalSolves - i].state === 'DNF') {
+            countDNF += 1;
+            solveTimes.push('DNF');
+        }
+        else { solveTimes.push(solves[totalSolves - i].time); }
     }
     if (countDNF > 0) { mo3 = 'DNF'; }
     else {
@@ -65,11 +58,13 @@ function calcStats() {
         mo3 = (solveTimeSum / 3000).toFixed(3);
     }
 
-    if (solves.length < 5) { return null }
-    solveTimes = [];
+    if (totalSolves < 5) { return null }
     for (let i = 4; i < 6; i++) {
-        solveTimes.push(solves[solves.length - i].time);
-        if (solves[solves.length - i].state === 'DNF') { countDNF += 1; }
+        if (solves[totalSolves - i].state === 'DNF') {
+            countDNF += 1;
+            solveTimes.push('DNF');
+        }
+        else { solveTimes.push(solves[totalSolves - i].time); }
     }
     if (countDNF > 1) {
         ao5 = 'DNF';
@@ -80,11 +75,11 @@ function calcStats() {
         solveTimeSum = purifyTTime(solveTimes);
         ao5 = (solveTimeSum / 3000).toFixed(3);
     }
-    if (solves.length < 12) { return null }
-    solveTimes = [];
+
+    if (totalSolves < 12) { return null }
     for (let i = 6; i < 13; i++) {
-        solveTimes.push(solves[solves.length - i].time);
-        if (solves[solves.length - i].state === 'DNF') { countDNF += 1; }
+        solveTimes.push(solves[totalSolves - i].time);
+        if (solves[totalSolves - i].state === 'DNF') { countDNF += 1; }
     }
     if (countDNF > 1) { ao12 = 'DNF'; }
     else {
@@ -123,8 +118,12 @@ function renderAppend(solve) {
             if (!(currentStat === '-')) {
                 statsScreen.rows[i].cells[1].style.color = 'var(--text-green)';
 
-                if (!(currentStat === bestStat)) { return null }
-                solveScreen.rows[index].cells[i-1].style.color = 'var(--text-green)';
+                if (currentStat === bestStat && i < 5 && !(bestStat === 'DNF')) {
+                    solveScreen.rows[index].cells[i - 1].style.color = 'var(--text-green)';
+                }
+                else if (bestStat === 'DNF') {
+                    solveScreen.rows[index].cells[i - 1].style.color = 'var(--text-red)';
+                }
             }
             else if (currentStat === 'DNF') {
                 statsScreen.rows[i].cells[1].style.color = 'var(--text-red)';

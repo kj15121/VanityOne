@@ -1,7 +1,7 @@
 // The code directly linked to the page
 "use strict"
 
-import Solve from './stats_handler.js';
+import {Solve} from './stats_handler.js';
 
 //Main algorithm objects
 const secScreen = document.getElementById('sec');
@@ -49,7 +49,7 @@ function timer() {
         }
         else if (time < 17000) {
             render(seconds, '+2');
-            msecScreen.style.color = 'var(--text-red)';
+            if (!isClickDown) { msecScreen.style.color = 'var(--text-red)'; }
             isInspectOT = true;
         }
         else {
@@ -94,7 +94,7 @@ function clickDown(key = {'key':' '}) {
     if (whenClickDown < 525) { return null }
 
     secScreen.style.color = 'var(--text-green)';
-    if (!isInspectOT) { msecScreen.style.color = 'var(--text-green)'; }
+    if (!isInspectOT || !isDNF) { msecScreen.style.color = 'var(--text-green)'; }
 }
 
 function clickUp(key = {'key':' '}) {
