@@ -55,6 +55,7 @@ function timer() {
         else {
             render(seconds, 'DNF');
             secScreen.style.color = 'var(--text-red)';
+            isInspectOT = false;
             isDNF = true;
         }
 
