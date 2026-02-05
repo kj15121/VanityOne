@@ -57,15 +57,15 @@ window.addEventListener(
     (e) => {
         if (e.touches.length !== 1) return;
 
-        e.preventDefault();
+        //e.preventDefault();
 
         touchState = true;
         initX = e.touches[0].clientX;
         initY = e.touches[0].clientY;
         initCamX = camX;
         initCamY = camY;
-    },
-    {passive: false}
+    }
+    //{passive: false}
 );
 
 window.addEventListener(
@@ -73,7 +73,7 @@ window.addEventListener(
     (e) => {
         if (!touchState) return;
 
-        e.preventDefault();
+        //e.preventDefault();
 
         const moveX = e.touches[0].clientX - initX,
             moveY = e.touches[0].clientY - initY;
@@ -82,8 +82,8 @@ window.addEventListener(
 
         viewLimit();
         render();
-    },
-    {passive: false}
+    }
+    //{passive: false}
 );
 
 window.addEventListener(
