@@ -20,7 +20,7 @@ selector {
     align-items
     table-layout
     overflow
-    overscroll-behaviour
+    overscroll-behavior
     touch-action
 }
 

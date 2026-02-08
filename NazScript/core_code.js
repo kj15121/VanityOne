@@ -83,7 +83,7 @@ function hustle() {
     //check for completeness
     if (rotorDisc.includes(null)) {
         alert("Select discs for all rotors")
-        return null
+        return
     }
 
     //Package settings and handover operations to encryptor
