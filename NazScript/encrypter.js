@@ -21,14 +21,13 @@ function Rotor(disc, spin, order) {
     this.increment = function() {
         if (this.order === 0) {
             this.spin = (this.spin + 1) % 26;
-            return null;
+            return;
         }
         let notchPrevious, spinPrevious;
         spinPrevious = rotorCollection[order - 1].spin;
         notchPrevious = rotorCollection[order - 1].notch;
         if (spinPrevious === notchPrevious) {
             this.spin = (this.spin + 1) % 26;
-            return null;
         }
     }
     this.actionFwd = function(token) {

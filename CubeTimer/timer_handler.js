@@ -1,7 +1,8 @@
 // The code directly linked to the page
+// Handling the timer
 "use strict"
 
-import {Solve} from './stats_handler.js';
+import {newSolve} from './stats_handler.js';
 
 //Main algorithm objects
 const secScreen = document.getElementById('sec');
@@ -71,7 +72,23 @@ function timer() {
 }
 
 function clickDown(key = {'key':' '}) {
-    if (!(key['key'] === ' ')) { return null }
+    if (key.key === 'Escape' && state === 1) {
+        clearInterval(timingLoop);
+        timingLoop = null;
+        render(seconds, 'canceled');
+        document.getElementById('stats').style.display = 'flex';
+        state = 0;
+    }
+    if (key.key === 'Escape' && state === 2) {
+        clearInterval(timingLoop);
+        timingLoop = null;
+        msecScreen.innerHTML = 'DNF'
+        secScreen.style.color = 'var(--text-red)';
+        document.getElementById('stats').style.display = 'flex';
+        state = 0;
+        newSolve(time, 'DNF');
+    }
+    if (!(key['key'] === ' ')) { return }
     if (!isClickDown) { //First key-detect
         isClickDown = true;
 
@@ -87,18 +104,18 @@ function clickDown(key = {'key':' '}) {
             render(seconds, mseconds);
         }
     }
-    if (!(state === 0 || state === 1)) { return null }
+    if (!(state === 0 || state === 1)) { return }
     //Usable key continuations
 
     whenClickDown = Date.now() - clickStart;
-    if (whenClickDown < 525) { return null }
+    if (whenClickDown < 525) { return }
 
     secScreen.style.color = 'var(--text-green)';
     if (!isInspectOT || !isDNF) { msecScreen.style.color = 'var(--text-green)'; }
 }
 
 function clickUp(key = {'key':' '}) {
-    if (!(key['key'] === ' ')) { return null }
+    if (!(key['key'] === ' ')) { return }
     isClickDown = false;
     //Key released
 
@@ -106,7 +123,7 @@ function clickUp(key = {'key':' '}) {
     msecScreen.style.color = 'var(--text)';
 
     if (state === 0) {
-        if (whenClickDown < 525) { return null }
+        if (whenClickDown < 525) { return }
         clickStart = null;
         whenClickDown = null;
 
@@ -117,7 +134,7 @@ function clickUp(key = {'key':' '}) {
         state = 1;
     }
     else if (state === 1) {
-        if (whenClickDown < 525) { return null }
+        if (whenClickDown < 525) { return }
         clickStart = null;
         whenClickDown = null;
 
@@ -134,15 +151,15 @@ function clickUp(key = {'key':' '}) {
             secScreen.innerHTML = seconds + '+2';
             secScreen.style.color = 'var(--text-red)';
             isInspectOT = false;
-            new Solve(time, 1);
+            newSolve(time, '+2');
         }
         else if (isDNF) {
             msecScreen.innerHTML = 'DNF'
             secScreen.style.color = 'var(--text-red)';
             isDNF = false;
-            new Solve(time, 2);
+            newSolve(time, 'DNF');
         }
-        else { new Solve(time); }
+        else { newSolve(time); }
 
         document.getElementById('stats').style.display = 'flex'
         state = 0;

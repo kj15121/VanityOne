@@ -17,9 +17,13 @@ table {
     text-align: center;
     vertical-align: middle;
 }
-@media (max-width: 175vh) { /*mid and thin screens*/
+@media (max-width: 175vh) and (min-width: 50vh) { /*mid and thin screens*/
     #timer {
         top: 0;
+    }
+}@media (max-width: 50vh) { /*ultra-thin screen*/
+    #timer {
+        top: calc(25vh - 30vmin);
     }
 }
 
@@ -60,6 +64,11 @@ table {
     #stats {
         height: calc(100vh - 60vmin);
         width: 100%
+    }
+}
+@media (max-width: 50vh) { /*ultra-thin screen*/
+    #stats {
+        height: 50vh;
     }
 }
 
