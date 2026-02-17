@@ -24,6 +24,8 @@ export function newSolve(time, state = null) {
     render();
 }
 
+export function handover() { return solves }
+
 function timeAdder(timeList, inverse = 0) {
     let min, max;
     let timeSum = 0;
@@ -197,17 +199,20 @@ function render() {
     ;
 
     if (solves[index-1].state === '+2') {
-        solveScreen.rows[index].cells[1].style.color = 'var(--text-orange)';
+        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-orange)';
     }
     else if (solves[index-1].state === 'DNF') {
-        solveScreen.rows[index].cells[1].style.color = 'var(--text-red)';
+        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-red)';
     }
 
+    if (currentStats.time === bestStats.time) {
+        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-green)';
+    }
     if (currentStats.mo3 === bestStats.mo3 && !(bestStats.mo3 === '-')) {
-        solveScreen.rows[index].cells[2].style.color = 'var(--text-green)';
+        solveScreen.rows[index+1].cells[2].style.color = 'var(--text-green)';
     }
     if (currentStats.ao5 === bestStats.ao5 && !(bestStats.ao5 === '-')) {
-        solveScreen.rows[index].cells[3].style.color = 'var(--text-green)';
+        solveScreen.rows[index+1].cells[3].style.color = 'var(--text-green)';
     }
 
     for (let i = 2; i < 6; i++) {
