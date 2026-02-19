@@ -38,13 +38,18 @@ th, td{
 }
 @media (max-width: 175vh) { /*mid and thin screens*/
     th, td {
-        font-size: 2vmin;
+        font-size: 2vmin !important;
     }
 }
 @media (max-width: 710px) and (min-width: 175vh) {/*small screen*/
     th, td {
-        font-size: 1.2vw;
+        font-size: 1.2vw !important;
     }
+}
+
+table .material-symbols-outlined {
+    font-size: inherit;
+    display: table-cell;
 }
 
 /* Timer */
@@ -76,4 +81,25 @@ th, td{
 }
 #stats_list::-webkit-scrollbar {
     display: none;
+}
+
+/* Session menu */
+
+#sessions {
+    background: rgba(44, 44, 44, 0.69);
+}
+#sessions > div {
+    border-radius: 7px;
+    background: var(--background-element);
+}
+
+#sessions_list {
+    overflow-y: scroll;
+}
+#sessions_list::-webkit-scrollbar {
+    display: none;
+}
+
+#sessions_options_table td {
+    cursor: pointer;
 }

@@ -90,12 +90,60 @@ table {
     }
 }
 
-#stats_main > table {
+#stats_main_table {
     margin: 1%;
     width: 98%;
     height: 98%;
 }
-#stats_list > table {
+#stats_list_table {
     margin: 1%;
     width: 98%;
+}
+
+/* Session menu */
+
+#sessions {
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#sessions > div {
+    position: absolute;
+    top: 20vh;
+    left: 15vw;
+    height: 60vh;
+    width: 70vw;
+    justify-content: center;
+}
+
+#sessions_list, #sessions_options {
+    position: absolute;
+    left: 2.5vw;
+    width: 65vw;
+}
+#sessions_list {
+    top: 5vh;
+    height: 45vh;
+}
+#sessions_options {
+    bottom: 5vh;
+    height: 5vh;
+}
+
+#sessions > div > div > table {
+    width: 100%;
+}
+#sessions_options_table {
+    height: 100%;
+    text-align: center;
+}
+
+#sessions_options_table td {
+    width: calc(100%/5);
+    box-sizing: border-box;
 }

@@ -1,5 +1,13 @@
 HTML
-<tagName class id></>
+<tagName
+    class
+    id
+    rowspan, colspan
+    width
+    style
+    onmouseover
+    onclick
+></>
 
 CSS - layout
 selector {

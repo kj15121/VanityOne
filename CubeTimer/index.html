@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="layout.css" />
     <link rel="stylesheet" href="styling.css" />
     <script type="module" src="timer_handler.js"></script>
@@ -12,6 +13,7 @@
     <title>Cubing Timer</title>
 </head>
 <body>
+
     <div id="timer">
         <p id="sec">00</p>
         <p id="msec">000</p>
@@ -58,6 +60,9 @@
         </div>
         <div id="stats_list">
             <table id="stats_list_table">
+                <tr style="cursor: pointer;" onclick="showSessionMenu()">
+                    <th colspan="4">Default Session</th>
+                </tr>
                 <tr>
                     <th>S.No</th>
                     <th>Time</th>
@@ -67,5 +72,60 @@
             </table>
         </div>
     </div>
+
+    <div id="sessions" onclick="hideSessionMenu()">
+        <div onclick="event.stopPropagation()">
+            <div id="sessions_list">
+                <table id="sessions_list_table">
+                    <colgroup>
+                        <col span="2">
+                        <col span="1" width="15%">
+                    </colgroup>
+                    <tr>
+                        <th colspan="3">Sessions</th>
+                    </tr>
+                    <tr>
+                        <th>Session</th>
+                        <th>Last used</th>
+                        <th>Solves</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="sessions_options">
+                <table id="sessions_options_table">
+                    <tr>
+                        <td class="material-symbols-outlined"
+                            style="color: var(--text-green)"
+                            onmouseover="mouseOverSO(0)" onmouseout="mouseOutSO(0)" onclick="mouseClickSO(0)"
+                            title="New session">
+                            add
+                        </td>
+                        <td class="material-symbols-outlined"
+                            onmouseover="mouseOverSO(1)" onmouseout="mouseOutSO(1)" onclick="mouseClickSO(1)"
+                            title="Rename session">
+                            edit
+                        </td>
+                        <td class="material-symbols-outlined"
+                            onmouseover="mouseOverSO(2)" onmouseout="mouseOutSO(2)" onclick="mouseClickSO(2)"
+                            title="Import from file">
+                            download
+                        </td>
+                        <td class="material-symbols-outlined"
+                            onmouseover="mouseOverSO(3)" onmouseout="mouseOutSO(3)" onclick="mouseClickSO(3)"
+                            title="Export to file">
+                            upload
+                        </td>
+                        <td class="material-symbols-outlined"
+                            style="color: var(--text-red)"
+                            onmouseover="mouseOverSO(4)" onmouseout="mouseOutSO(4)" onclick="mouseClickSO(4)"
+                            title="Remove session">
+                            delete
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
