@@ -88,9 +88,13 @@ table .material-symbols-outlined {
 #sessions {
     background: rgba(44, 44, 44, 0.69);
 }
+
+#sessions td {
+    cursor: pointer;
+}
 #sessions > div {
     border-radius: 7px;
-    background: var(--background-element);
+    background: var(--background-element); /* session_list_table uses BGColor for state tracking */
 }
 
 #sessions_list {
@@ -100,6 +104,6 @@ table .material-symbols-outlined {
     display: none;
 }
 
-#sessions_options_table td {
-    cursor: pointer;
+#sessions_list_table tr:hover {
+    color: var(--text-green);
 }

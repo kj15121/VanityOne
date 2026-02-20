@@ -104,7 +104,7 @@ table {
 
 #sessions {
     z-index: 2;
-    display: none;
+    display: initial;
     position: fixed;
     top: 0;
     left: 0;
@@ -127,8 +127,8 @@ table {
     width: 65vw;
 }
 #sessions_list {
-    top: 5vh;
-    height: 45vh;
+    top: 2.5vh;
+    height: 47.5vh;
 }
 #sessions_options {
     bottom: 5vh;

@@ -6,10 +6,17 @@
 const statsScreen = document.getElementById("stats_main_table");
 const solveScreen = document.getElementById("stats_list_table");
 
-let solves = [], solveTimes = [];   //solveTimes adds vals to the start | stored as ...smmm
-let currentStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};  // stored as ...s.mmm
-let bestStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};     // stored as ...s.mmm
-let targetStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};   // stored as ...s.mmm
+let solves, solveTimes;                     //solveTimes adds vals to the start | stored as ...smmm
+let currentStats, bestStats, targetStats;   // stored as ...s.mmm
+
+export function statsInit() {
+    solves = [];
+    solveTimes = [];
+    currentStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};
+    bestStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};
+    targetStats = {'time': '-', 'mo3': '-', 'ao5': '-', 'ao12': '-'};
+}
+statsInit();
 
 //Logic-support
 

@@ -61,7 +61,7 @@
         <div id="stats_list">
             <table id="stats_list_table">
                 <tr style="cursor: pointer;" onclick="showSessionMenu()">
-                    <th colspan="4">Default Session</th>
+                    <th id="session_name" colspan="4">Session - Default</th>
                 </tr>
                 <tr>
                     <th>S.No</th>
@@ -81,14 +81,17 @@
                         <col span="2">
                         <col span="1" width="15%">
                     </colgroup>
-                    <tr>
-                        <th colspan="3">Sessions</th>
-                    </tr>
-                    <tr>
-                        <th>Session</th>
-                        <th>Last used</th>
-                        <th>Solves</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th colspan="3">Sessions</th>
+                        </tr>
+                        <tr>
+                            <th>Session</th>
+                            <th>Last used</th>
+                            <th>Solves</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
             <div id="sessions_options">
@@ -96,29 +99,29 @@
                     <tr>
                         <td class="material-symbols-outlined"
                             style="color: var(--text-green)"
-                            onmouseover="mouseOverSO(0)" onmouseout="mouseOutSO(0)" onclick="mouseClickSO(0)"
-                            title="New session">
+                            onmouseover="sessionOptions_mOver(0)" onmouseout="sessionOptions_mOut(0)" onclick="sessionOptions_mClick(0)"
+                            title="Create new session">
                             add
                         </td>
                         <td class="material-symbols-outlined"
-                            onmouseover="mouseOverSO(1)" onmouseout="mouseOutSO(1)" onclick="mouseClickSO(1)"
+                            onmouseover="sessionOptions_mOver(1)" onmouseout="sessionOptions_mOut(1)" onclick="sessionOptions_mClick(1)"
                             title="Rename session">
                             edit
                         </td>
                         <td class="material-symbols-outlined"
-                            onmouseover="mouseOverSO(2)" onmouseout="mouseOutSO(2)" onclick="mouseClickSO(2)"
+                            onmouseover="sessionOptions_mOver(2)" onmouseout="sessionOptions_mOut(2)" onclick="sessionOptions_mClick(2)"
                             title="Import from file">
                             download
                         </td>
                         <td class="material-symbols-outlined"
-                            onmouseover="mouseOverSO(3)" onmouseout="mouseOutSO(3)" onclick="mouseClickSO(3)"
+                            onmouseover="sessionOptions_mOver(3)" onmouseout="sessionOptions_mOut(3)" onclick="sessionOptions_mClick(3)"
                             title="Export to file">
                             upload
                         </td>
                         <td class="material-symbols-outlined"
                             style="color: var(--text-red)"
-                            onmouseover="mouseOverSO(4)" onmouseout="mouseOutSO(4)" onclick="mouseClickSO(4)"
-                            title="Remove session">
+                            onmouseover="sessionOptions_mOver(4)" onmouseout="sessionOptions_mOut(4)" onclick="sessionOptions_mClick(4)"
+                            title="Remove session permanently">
                             delete
                         </td>
                     </tr>
