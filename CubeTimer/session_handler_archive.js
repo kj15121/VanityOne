@@ -106,7 +106,7 @@ function sessionImport() {}
 function sessionExport() {}
 function sessionDelete() {
     console.log('session delete');
-    if (window.confirm("Session deletion cannot be undone, you sure?")) {
+    if (!(window.confirm("Session deletion cannot be undone, you sure?"))) {
         return
     }
 

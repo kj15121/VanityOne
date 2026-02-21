@@ -43,7 +43,6 @@ table {
 /* Stats */
 
 #stats {
-    z-index: 1;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -103,7 +102,7 @@ table {
 /* Session menu */
 
 #sessions {
-    z-index: 2;
+    z-index: 1;
     display: initial;
     position: fixed;
     top: 0;
@@ -135,7 +134,7 @@ table {
     height: 5vh;
 }
 
-#sessions > div > div > table {
+#sessions table {
     width: 100%;
 }
 #sessions_options_table {
@@ -144,6 +143,37 @@ table {
 }
 
 #sessions_options_table td {
-    width: calc(100%/5);
+    box-sizing: border-box;
+}
+
+/* Session Editor */
+
+#sessions_editor {
+    display: none;
+}
+
+#sessions_editor_textArea {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vw;
+    width: 65vw;
+    height: 45vh;
+    resize: none;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+#sessions_eOptions {
+    position: absolute;
+    left: 2.5vw;
+    width: 65vw;
+    bottom: 5vh;
+    height: 5vh;
+}
+
+#sessions_eOptions_table {
+    width: 100%;
+    height: 100%;
+    text-align: center;
     box-sizing: border-box;
 }

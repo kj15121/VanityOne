@@ -5,6 +5,7 @@
 import {handover} from "./stats_handler.js";
 import {newSolve} from "./stats_handler.js";
 import {statsInit} from "./stats_handler.js";
+import {toggleSessionState} from "./timer_handler.js";
 
 //Main algorithm objects
 let currentSession, currentSessionName, currentSessionIndex;
@@ -88,28 +89,43 @@ function fetch(sessionName = null) {
 }
 
 function showSessionMenu() {
+    toggleSessionState(true);
     document.getElementById('sessions').style.display = 'initial';
 }
 function hideSessionMenu() {
+    toggleSessionState(false);
     document.getElementById('sessions').style.display = 'none';
+    document.getElementById('sessions_editor').style.display = 'none';
 }
 window.hideSessionMenu = hideSessionMenu;
 window.showSessionMenu = showSessionMenu;
 
 function sessionOptions_mOver(func) {
-    const funcList = ['New', 'Rename', 'Import', 'Export', 'Delete'];
-    const cell = document.getElementById('sessions_options_table').rows[0].cells[func];
+    const funcList = ['New', 'Rename', 'Import', 'Edit/Export', 'Delete', 'Save', 'Export', 'Close'];
+    let cell;
+    if (func < 5) {
+        cell = document.getElementById('sessions_options_table').rows[0].cells[func];
+    }
+    else if (4 < func && func < 8) {
+        cell = document.getElementById('sessions_eOptions_table').rows[0].cells[func-5];
+    }
     cell.innerHTML = funcList[func];
     cell.className = '';
 }
 function sessionOptions_mOut(func) {
-    const funcList = ['add', 'edit','download', 'upload', 'delete'];
-    const cell = document.getElementById('sessions_options_table').rows[0].cells[func];
+    const funcList = ['add', 'edit', 'download', 'code', 'delete', 'save', 'move_item', 'close'];
+    let cell;
+    if (func < 5) {
+        cell = document.getElementById('sessions_options_table').rows[0].cells[func];
+    }
+    else if (4 < func && func < 8) {
+        cell = document.getElementById('sessions_eOptions_table').rows[0].cells[func-5];
+    }
     cell.innerHTML = funcList[func];
     cell.className = 'material-symbols-outlined';
 }
 function sessionOptions_mClick(func) {
-    const funcs = [createSession, renameSession, importSession, exportSession, deleteSession];
+    const funcs = [createSession, renameSession, importSession, modifySession, deleteSession, storeSession, exportSession, closeEditor];
     funcs[func]();
 }
 window.sessionOptions_mOver = sessionOptions_mOver;
@@ -124,7 +140,6 @@ function createSession() {
         sessionName = window.prompt('Name already used');
     }
     if (!sessionName) { return }
-    sessionList.push(sessionName);
 
     store(currentSessionName, handover());
 
@@ -143,17 +158,62 @@ function renameSession() {
     }
     if (!sessionName) { return }
 
+    sessionList[currentSessionIndex] = sessionName;
     store(sessionName, session.solves);
     localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
 
     currentSessionName = sessionName;
-    sessionList[currentSessionIndex] = currentSessionName;
 
     renderSessions();
 }
 function importSession() {}
-function exportSession() {}
-function deleteSession() {}
+function modifySession() {
+    document.getElementById('sessions_editor').style.display = 'initial';
+}
+function deleteSession() {
+    if (!(window.confirm("Session deletion cannot be undone, you sure?"))) {
+        return
+    }
+
+    sessionList.splice(currentSessionIndex, 1);
+    localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
+
+    if (sessionList.length === 0) {
+        store('Default', []);
+        currentSessionName = 'Default';
+    }
+    else if (currentSessionIndex === sessionList.length) {
+        currentSessionName = sessionList[currentSessionIndex-1];
+    }
+    else {
+        currentSessionName = sessionList[currentSessionIndex];
+    }
+
+    renderSessions();
+    renderStats();
+}
+function storeSession () {}
+function exportSession() {
+    store(currentSessionName, handover());
+    currentSession = fetch(currentSessionName);
+
+    const exportBlob = new Blob([JSON.stringify(currentSession, null, 2)], { type: 'application/json' });
+    const exportUrl = URL.createObjectURL(exportBlob);
+
+    const exportElement = document.createElement('a');
+    exportElement.href = exportUrl;
+    exportElement.download = currentSessionName;
+    exportElement.style.display = 'none';
+
+    document.body.appendChild(exportElement);
+    exportElement.click();
+
+    document.body.removeChild(exportElement);
+    URL.revokeObjectURL(exportUrl);
+}
+function closeEditor () {
+    document.getElementById('sessions_editor').style.display = 'none';
+}
 
 function loadSession(sessionName) {
     store(currentSessionName, handover());
@@ -170,6 +230,7 @@ function renderStats() {
     for (let i = 2; i < 6; i++) {
         for (let j = 1; j < 4; j++) {
             statsMainTable.rows[i].cells[j].innerHTML = '-';
+            statsMainTable.rows[i].cells[j].style.color = 'var(--text-offset)';
         }
     }
 
@@ -191,7 +252,6 @@ function renderStats() {
         newSolve(item.time, item.state);
     });
 
-    console.log(document.getElementById('session_name'))
     document.getElementById('session_name').innerHTML = `Session - ${currentSessionName}`;
 }
 function renderSessions() {
@@ -218,13 +278,12 @@ function renderSessions() {
     tbody.rows[currentSessionIndex].style.background = 'var(--background)';
 }
 
-window.addEventListener('beforeunload', event => {
+window.addEventListener('beforeunload', () => {
     store(currentSessionName, handover());
 
     settings.allSessions = sessionList;
     settings.defSession = currentSessionName;
     localStorage['VO-CT-Config'] = JSON.stringify(settings);
 });
-
 
 init();

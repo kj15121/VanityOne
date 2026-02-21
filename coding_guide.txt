@@ -22,6 +22,7 @@ selector {
     margin
     height
     width
+    box-sizing
     padding
     text-align
     justify-content
@@ -30,6 +31,7 @@ selector {
     overflow
     overscroll-behavior
     touch-action
+    resize
 }
 
 CSS - styling

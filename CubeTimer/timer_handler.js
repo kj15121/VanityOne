@@ -16,12 +16,17 @@ let clickStart, whenClickDown, isClickDown = false;
 let isInspectOT = false, isDNF = false;
 let state = 0;  // 0 - default; 1 - inspect; 2 - solve
 let timingLoop, mouseDownLoop;
+let sessionState = false;
 
 //Logic-support
 
 function render(sec, msec) {
     secScreen.innerHTML = sec;
     msecScreen.innerHTML = msec;
+}
+
+export function toggleSessionState(state) {
+    sessionState = state;
 }
 
 beep.src = '../Assets/beep.mp3';
@@ -72,6 +77,7 @@ function timer() {
 }
 
 function clickDown(key = {'key':' '}) {
+    if (sessionState) { return }
     if (key.key === 'Escape' && state === 1) {
         clearInterval(timingLoop);
         timingLoop = null;
@@ -115,6 +121,7 @@ function clickDown(key = {'key':' '}) {
 }
 
 function clickUp(key = {'key':' '}) {
+    if (sessionState) { return }
     if (!(key['key'] === ' ')) { return }
     isClickDown = false;
     //Key released

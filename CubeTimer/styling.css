@@ -107,3 +107,12 @@ table .material-symbols-outlined {
 #sessions_list_table tr:hover {
     color: var(--text-green);
 }
+
+/* Sessions editor */
+
+#sessions_editor_textArea {
+    border: none;
+    border-radius: 4.5px;
+    background: #2b2b2b;
+    color: #dddddd;
+}

@@ -115,14 +115,39 @@
                         </td>
                         <td class="material-symbols-outlined"
                             onmouseover="sessionOptions_mOver(3)" onmouseout="sessionOptions_mOut(3)" onclick="sessionOptions_mClick(3)"
-                            title="Export to file">
-                            upload
+                            title="Edit or export session">
+                            code
                         </td>
                         <td class="material-symbols-outlined"
                             style="color: var(--text-red)"
                             onmouseover="sessionOptions_mOver(4)" onmouseout="sessionOptions_mOut(4)" onclick="sessionOptions_mClick(4)"
                             title="Remove session permanently">
                             delete
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="sessions_editor" onclick="event.stopPropagation()">
+            <textarea id="sessions_editor_textArea" placeholder="Paste the sessions JSON"></textarea>
+            <div id="sessions_eOptions">
+                <table id="sessions_eOptions_table">
+                    <tr>
+                        <td class="material-symbols-outlined"
+                            onmouseover="sessionOptions_mOver(5)" onmouseout="sessionOptions_mOut(5)" onclick="sessionOptions_mClick(5)"
+                            title="Save">
+                            save
+                        </td>
+                        <td class="material-symbols-outlined"
+                            onmouseover="sessionOptions_mOver(6)" onmouseout="sessionOptions_mOut(6)" onclick="sessionOptions_mClick(6)"
+                            title="Export to file">
+                            move_item
+                        </td>
+                        <td class="material-symbols-outlined"
+                            style="color: var(--text-red)"
+                            onmouseover="sessionOptions_mOver(7)" onmouseout="sessionOptions_mOut(7)" onclick="sessionOptions_mClick(7)"
+                            title="Close editor">
+                            close
                         </td>
                     </tr>
                 </table>
