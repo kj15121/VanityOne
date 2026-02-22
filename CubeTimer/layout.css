@@ -17,11 +17,12 @@ table {
     text-align: center;
     vertical-align: middle;
 }
-@media (max-width: 175vh) and (min-width: 50vh) { /*mid and thin screens*/
+@media (max-width: 175vh) and (min-width: 50vh) { /* mid and thin screens */
     #timer {
         top: 0;
     }
-}@media (max-width: 50vh) { /*ultra-thin screen*/
+}
+@media (max-width: 50vh) { /* ultra-thin screen */
     #timer {
         top: calc(25vh - 30vmin);
     }
@@ -52,58 +53,58 @@ table {
     width: calc(50vw - 40vmin);
     align-items: stretch;
 }
-@media (max-width: 175vh) and (min-width: 100vh){ /*mid screen*/
+@media (max-width: 175vh) and (min-width: 100vh) { /* mid screen */
     #stats {
         flex-direction: row;
         height: 40vh;
-        width: 100%
+        width: 100%;
     }
 }
-@media (max-width: 100vh) { /*thin screen*/
+@media (max-width: 100vh) { /* thin screen */
     #stats {
         height: calc(100vh - 60vmin);
-        width: 100%
+        width: 100%;
     }
 }
-@media (max-width: 50vh) { /*ultra-thin screen*/
+@media (max-width: 50vh) { /* ultra-thin screen */
     #stats {
         height: 50vh;
     }
 }
 
 #stats_main {
-    width: 100%;
     height: fit-content;
+    width: 100%;
 }
 #stats_list {
     width: 100%;
 }
-@media (max-width: 175vh) and (min-width: 100vh){ /*mid screen*/
+@media (max-width: 175vh) and (min-width: 100vh) { /* mid screen */
     #stats_main {
         height: 98%;
         width: 45%;
     }
     #stats_list {
         height: 98%;
-        width: 55%
+        width: 55%;
     }
 }
 
 #stats_main_table {
     margin: 1%;
-    width: 98%;
     height: 98%;
+    width: 98%;
 }
 #stats_list_table {
     margin: 1%;
     width: 98%;
 }
 
-/* Session menu */
+/* Session menu & editor */
 
 #sessions {
     z-index: 1;
-    display: initial;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -120,7 +121,14 @@ table {
     justify-content: center;
 }
 
-#sessions_list, #sessions_options {
+#sessions table {
+    width: 100%;
+}
+
+#sessions_list,
+#sessions_options,
+#sessions_editor_textArea,
+#sessions_eOptions {
     position: absolute;
     left: 2.5vw;
     width: 65vw;
@@ -129,51 +137,26 @@ table {
     top: 2.5vh;
     height: 47.5vh;
 }
-#sessions_options {
+#sessions_options,
+#sessions_eOptions {
     bottom: 5vh;
     height: 5vh;
 }
-
-#sessions table {
-    width: 100%;
+#sessions_editor_textArea {
+    top: 2.5vh;
+    height: 45vh;
+    box-sizing: border-box;
+    padding: 4px;
+    resize: none;
 }
-#sessions_options_table {
+
+#sessions_options_table,
+#sessions_eOptions_table {
     height: 100%;
+    box-sizing: border-box;
     text-align: center;
 }
-
-#sessions_options_table td {
-    box-sizing: border-box;
-}
-
-/* Session Editor */
 
 #sessions_editor {
     display: none;
-}
-
-#sessions_editor_textArea {
-    position: absolute;
-    top: 2.5vh;
-    left: 2.5vw;
-    width: 65vw;
-    height: 45vh;
-    resize: none;
-    padding: 4px;
-    box-sizing: border-box;
-}
-
-#sessions_eOptions {
-    position: absolute;
-    left: 2.5vw;
-    width: 65vw;
-    bottom: 5vh;
-    height: 5vh;
-}
-
-#sessions_eOptions_table {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    box-sizing: border-box;
 }

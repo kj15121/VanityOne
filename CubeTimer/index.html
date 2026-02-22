@@ -60,6 +60,7 @@
         </div>
         <div id="stats_list">
             <table id="stats_list_table">
+                <thead>
                 <tr style="cursor: pointer;" onclick="showSessionMenu()">
                     <th id="session_name" colspan="4">Session - Default</th>
                 </tr>
@@ -69,17 +70,19 @@
                     <th>Mo3</th>
                     <th>Ao5</th>
                 </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </div>
 
     <div id="sessions" onclick="hideSessionMenu()">
-        <div onclick="event.stopPropagation()">
+        <div id="sessions_main"> <!--id for eventlistener to prevent propagation of parent onclick-->
             <div id="sessions_list">
                 <table id="sessions_list_table">
                     <colgroup>
                         <col span="2">
-                        <col span="1" width="15%">
+                        <col span="1" style="width: 15%">
                     </colgroup>
                     <thead>
                         <tr>
@@ -128,7 +131,8 @@
                 </table>
             </div>
         </div>
-        <div id="sessions_editor" onclick="event.stopPropagation()">
+        <div id="sessions_editor">
+            <label for="sessions_editor_textArea" style="display: none;">Text area for editing JSON</label>
             <textarea id="sessions_editor_textArea" placeholder="Paste the sessions JSON"></textarea>
             <div id="sessions_eOptions">
                 <table id="sessions_eOptions_table">
@@ -154,6 +158,8 @@
             </div>
         </div>
     </div>
+
+    <input type="file" id="fileInput" accept=".json" style="display: none" />
 
 </body>
 </html>

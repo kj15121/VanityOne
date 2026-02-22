@@ -4,7 +4,7 @@
 
 //Main algorithm objects
 const statsScreen = document.getElementById("stats_main_table");
-const solveScreen = document.getElementById("stats_list_table");
+const solveScreen = document.querySelector('#stats_list_table tbody');
 
 let solves, solveTimes;                     //solveTimes adds vals to the start | stored as ...smmm
 let currentStats, bestStats, targetStats;   // stored as ...s.mmm
@@ -195,8 +195,9 @@ function calcTStats() {
 
 function render() {
     let index = solves.length
+    let solveScreenHTML = solveScreen.innerHTML;
 
-    solveScreen.innerHTML +=
+    solveScreenHTML +=
         `<tr>
         <td>${index}</td>
         <td>${currentStats.time}</td>
@@ -204,22 +205,23 @@ function render() {
         <td>${currentStats.ao5}</td>
         </tr>`
     ;
+    solveScreen.innerHTML = solveScreenHTML;
 
     if (solves[index-1].state === '+2') {
-        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-orange)';
+        solveScreen.rows[index-1].cells[1].style.color = 'var(--text-orange)';
     }
     else if (solves[index-1].state === 'DNF') {
-        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-red)';
+        solveScreen.rows[index-1].cells[1].style.color = 'var(--text-red)';
     }
 
     if (currentStats.time === bestStats.time) {
-        solveScreen.rows[index+1].cells[1].style.color = 'var(--text-green)';
+        solveScreen.rows[index-1].cells[1].style.color = 'var(--text-green)';
     }
     if (currentStats.mo3 === bestStats.mo3 && !(bestStats.mo3 === '-')) {
-        solveScreen.rows[index+1].cells[2].style.color = 'var(--text-green)';
+        solveScreen.rows[index-1].cells[2].style.color = 'var(--text-green)';
     }
     if (currentStats.ao5 === bestStats.ao5 && !(bestStats.ao5 === '-')) {
-        solveScreen.rows[index+1].cells[3].style.color = 'var(--text-green)';
+        solveScreen.rows[index-1].cells[3].style.color = 'var(--text-green)';
     }
 
     for (let i = 2; i < 6; i++) {

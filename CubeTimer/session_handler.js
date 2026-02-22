@@ -1,5 +1,5 @@
 // Code directly linked to the page
-// Handling iter-session data
+// Handling inter-session data
 "use strict"
 
 import {handover} from "./stats_handler.js";
@@ -30,7 +30,7 @@ function init() {
         settings.allSessions.push(settings.defSession);
     }
 
-    // Sync the session lists and remove duplicates
+    // Sync the session lists
     for (const item of sessionList) {
         if (!settings.allSessions.includes(item)) {
             settings.allSessions.push(item);
@@ -42,13 +42,9 @@ function init() {
             sessionList.push(item);
         }
     }
-
-    sessionList = settings.allSessions;
+    settings.allSessions = sessionList;
 
     // Load default session
-    if (!localStorage[`VO-CT-S-${settings.defSession}`]) {
-        store(settings.defSession, []);
-    }
     currentSession = JSON.parse(localStorage[`VO-CT-S-${settings.defSession}`]);
     currentSessionName = settings.defSession;
     currentSessionIndex = sessionList.indexOf(currentSessionName);
@@ -88,9 +84,88 @@ function fetch(sessionName = null) {
     return JSON.parse(localStorage[`VO-CT-S-${sessionName}`]);
 }
 
+function validateInput(userJSON) {
+
+    //parsing JSON
+    let parsed;
+    try {
+        if (typeof userJSON === "string") {
+            parsed = JSON.parse(userJSON);
+        }
+        else {
+            parsed = userJSON;
+        }
+    }
+    catch {
+        throw new Error("SyntaxError in input, expected JSON");
+    }
+
+    //getting name and solves
+    let name, rawSolves;
+    if (parsed) {
+        name = parsed.name;
+        rawSolves = parsed.solves;
+    }
+
+    //correcting name
+    if (Array.isArray(name) && name[0]) {
+        name = name[0];
+    }
+    if (typeof name !== "string" || name.trim() === "") {
+        name = window.prompt('Enter a name for the session');
+    }
+    if (!name) {
+        throw new Error('Name expected for storage');
+    }
+
+    //correcting solves
+    let solves = [];
+
+    if (!Array.isArray(rawSolves)) {
+        throw new Error("Invalid 'solves' field, expected an array");
+    }
+
+    rawSolves.forEach((item, index) => {
+        if (typeof item !== "object" || item === null) {
+            console.warn(`Solve indexed at ${index} skipped, expected collection`);
+            return;
+        }
+
+        let time, state;
+
+        if (Array.isArray(item) && 0 < item.length) {
+            time = item[0];
+            if (item[1] === '+2' || item[1] === 'DNF') {
+                state = item[1];
+            }
+            else {
+                state = null;
+            }
+        }
+        else {
+            time = item.time;
+            state = item.state;
+        }
+
+        if (!Number.isInteger(time) || time < 0) {
+            console.warn(`Solve indexed at ${index} skipped, time invalid`);
+            return
+        }
+
+        solves.push({'time': time, 'state': state});
+    });
+
+    //building session
+    let session = {};
+    session.name = name.trim();
+    session.solves = solves;
+    return session;
+}
+
 function showSessionMenu() {
     toggleSessionState(true);
     document.getElementById('sessions').style.display = 'initial';
+    renderSessions();
 }
 function hideSessionMenu() {
     toggleSessionState(false);
@@ -100,8 +175,7 @@ function hideSessionMenu() {
 window.hideSessionMenu = hideSessionMenu;
 window.showSessionMenu = showSessionMenu;
 
-function sessionOptions_mOver(func) {
-    const funcList = ['New', 'Rename', 'Import', 'Edit/Export', 'Delete', 'Save', 'Export', 'Close'];
+function sessionOptions_fetchCell(func) {
     let cell;
     if (func < 5) {
         cell = document.getElementById('sessions_options_table').rows[0].cells[func];
@@ -109,23 +183,24 @@ function sessionOptions_mOver(func) {
     else if (4 < func && func < 8) {
         cell = document.getElementById('sessions_eOptions_table').rows[0].cells[func-5];
     }
+
+    return cell
+}
+
+function sessionOptions_mOver(func) {
+    const funcList = ['New', 'Rename', 'Import', 'Edit/Export', 'Delete', 'Save', 'Export', 'Close'];
+    const cell = sessionOptions_fetchCell(func);
     cell.innerHTML = funcList[func];
     cell.className = '';
 }
 function sessionOptions_mOut(func) {
     const funcList = ['add', 'edit', 'download', 'code', 'delete', 'save', 'move_item', 'close'];
-    let cell;
-    if (func < 5) {
-        cell = document.getElementById('sessions_options_table').rows[0].cells[func];
-    }
-    else if (4 < func && func < 8) {
-        cell = document.getElementById('sessions_eOptions_table').rows[0].cells[func-5];
-    }
+    const cell = sessionOptions_fetchCell(func);
     cell.innerHTML = funcList[func];
     cell.className = 'material-symbols-outlined';
 }
 function sessionOptions_mClick(func) {
-    const funcs = [createSession, renameSession, importSession, modifySession, deleteSession, storeSession, exportSession, closeEditor];
+    const funcs = [createSession, renameSession, importSession, openEditor, deleteSession, saveSession, exportSession, closeEditor];
     funcs[func]();
 }
 window.sessionOptions_mOver = sessionOptions_mOver;
@@ -166,15 +241,26 @@ function renameSession() {
 
     renderSessions();
 }
-function importSession() {}
-function modifySession() {
+function importSession() {
+    document.getElementById('fileInput').click();
+    //handed over to document.getElementById('fileInput').addEventListener
+}
+function openEditor() {
     document.getElementById('sessions_editor').style.display = 'initial';
+    store(currentSessionName, handover());
+    document.getElementById('sessions_editor_textArea').value = JSON.stringify(
+        fetch(currentSessionName), null, 2
+    );
+
+    currentSession = fetch(currentSessionName);
+    currentSessionIndex = sessionList.indexOf(currentSessionName);
 }
 function deleteSession() {
     if (!(window.confirm("Session deletion cannot be undone, you sure?"))) {
         return
     }
 
+    console.log(currentSessionName)
     sessionList.splice(currentSessionIndex, 1);
     localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
 
@@ -189,15 +275,35 @@ function deleteSession() {
         currentSessionName = sessionList[currentSessionIndex];
     }
 
-    renderSessions();
     renderStats();
+    renderSessions();
 }
-function storeSession () {}
+function saveSession () {
+    let userJSON = document.getElementById('sessions_editor_textArea').value;
+    let session = validateInput(userJSON);
+
+    if (!(currentSessionName === session.name)) {
+        while (sessionList.includes(session.name)) {
+            session.name = window.prompt('Name already used, enter a new name');
+        }
+        if (!session.name) { return; }
+
+        localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
+    }
+
+    store(session.name, session.solves)
+
+    renderStats();
+    renderSessions();
+}
 function exportSession() {
     store(currentSessionName, handover());
     currentSession = fetch(currentSessionName);
 
-    const exportBlob = new Blob([JSON.stringify(currentSession, null, 2)], { type: 'application/json' });
+    const exportBlob = new Blob(
+        [JSON.stringify(currentSession, null, 2)],
+        { type: 'application/json' }
+    );
     const exportUrl = URL.createObjectURL(exportBlob);
 
     const exportElement = document.createElement('a');
@@ -225,7 +331,7 @@ window.loadSession = loadSession;
 
 function renderStats() {
     const statsMainTable = document.getElementById('stats_main_table');
-    const statsListTable = document.getElementById('stats_list_table');
+    const statsListTable = document.querySelector('#stats_list_table tbody');
 
     for (let i = 2; i < 6; i++) {
         for (let j = 1; j < 4; j++) {
@@ -234,19 +340,10 @@ function renderStats() {
         }
     }
 
-    statsListTable.innerHTML =
-        `<tr style="cursor: pointer;" onclick="showSessionMenu()">
-            <th id="session_name" colspan="4">Session - Default</th>
-        </tr>
-        <tr>
-            <th>S.No</th>
-            <th>Time</th>
-            <th>Mo3</th>
-            <th>Ao5</th>
-        </tr>`;
+    statsListTable.innerHTML = '';
 
     statsInit();
-    currentSession = fetch(currentSessionName)
+    currentSession = fetch(currentSessionName);
     currentSessionIndex = sessionList.indexOf(currentSessionName);
     currentSession.solves.forEach(item => {
         newSolve(item.time, item.state);
@@ -284,6 +381,43 @@ window.addEventListener('beforeunload', () => {
     settings.allSessions = sessionList;
     settings.defSession = currentSessionName;
     localStorage['VO-CT-Config'] = JSON.stringify(settings);
+});
+document.getElementById('fileInput').addEventListener('change', () => {
+    const file = this.files[0];
+    if (!file) {
+        this.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        const data = String(e.target.result);
+
+        let session = validateInput(data);
+        while (sessionList.includes(session.name)) {
+            session.name = window.prompt('Name already used, enter a new name');
+        }
+        if (!session.name) {
+            this.value = '';
+            return;
+        }
+
+        store(session.name, session.solves)
+
+        renderStats();
+        renderSessions();
+    };
+    reader.readAsText(file);
+});
+document.getElementById("sessions_main").addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+document.getElementById("sessions_editor").addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+document.getElementById('sessions_editor_textArea').addEventListener('change', (e) => {
+   const value = JSON.parse(e.target.value);
+   e.target.value = JSON.stringify(value, null, 2);
 });
 
 init();
