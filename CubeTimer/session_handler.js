@@ -1,5 +1,5 @@
 // Code directly linked to the page
-// Handling inter-session data
+// Handling session data
 "use strict"
 
 import {handover} from "./stats_handler.js";
@@ -21,7 +21,8 @@ function init() {
     // Initialize config
     if (localStorage['VO-CT-Config']) {
         settings = JSON.parse(localStorage['VO-CT-Config']);
-    } else {
+    }
+    else {
         localStorage['VO-CT-Config'] = JSON.stringify(settings);
     }
 
@@ -97,6 +98,7 @@ function validateInput(userJSON) {
         }
     }
     catch {
+        window.alert("Error in processing input, check console for more information")
         throw new Error("SyntaxError in input, expected JSON");
     }
 
@@ -115,7 +117,10 @@ function validateInput(userJSON) {
         name = window.prompt('Enter a name for the session');
     }
     if (!name) {
-        throw new Error('Name expected for storage');
+        name = window.prompt('Enter a name for the session')
+        if (!name) {
+            return 'nameError';
+        }
     }
 
     //correcting solves
@@ -260,7 +265,6 @@ function deleteSession() {
         return
     }
 
-    console.log(currentSessionName)
     sessionList.splice(currentSessionIndex, 1);
     localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
 
@@ -283,15 +287,17 @@ function saveSession () {
     let session = validateInput(userJSON);
 
     if (!(currentSessionName === session.name)) {
-        while (sessionList.includes(session.name)) {
+        while (sessionList.includes(session.name) || currentSessionName === session.name) {
             session.name = window.prompt('Name already used, enter a new name');
         }
         if (!session.name) { return; }
 
+        sessionList[currentSessionIndex] = session.name;
         localStorage.removeItem(`VO-CT-S-${currentSessionName}`);
     }
 
-    store(session.name, session.solves)
+    store(session.name, session.solves);
+    currentSessionName = session.name;
 
     renderStats();
     renderSessions();
@@ -394,15 +400,20 @@ document.getElementById('fileInput').addEventListener('change', () => {
         const data = String(e.target.result);
 
         let session = validateInput(data);
+
+        if (session === 'nameError') {
+            this.value = '';
+            throw new Error('Unique name needed for session')
+        }
+
         while (sessionList.includes(session.name)) {
             session.name = window.prompt('Name already used, enter a new name');
         }
         if (!session.name) {
-            this.value = '';
-            return;
+            return
         }
 
-        store(session.name, session.solves)
+        store(session.name, session.solves);
 
         renderStats();
         renderSessions();
@@ -416,8 +427,11 @@ document.getElementById("sessions_editor").addEventListener('click', (e) => {
     e.stopPropagation();
 });
 document.getElementById('sessions_editor_textArea').addEventListener('change', (e) => {
-   const value = JSON.parse(e.target.value);
-   e.target.value = JSON.stringify(value, null, 2);
+    try {
+        const value = JSON.parse(e.target.value);
+        e.target.value = JSON.stringify(value, null, 2);
+    }
+    catch {}
 });
 
 init();
